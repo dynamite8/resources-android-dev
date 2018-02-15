@@ -47,6 +47,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 * **Janice Wildrick** - *Initial work*
 * **Olga Agafonova** - *Initial work*
 * **Ljeoma Ezeonyebuchi** - *Initial work*
+* **Divya** - *Initial work*
 
 
 See also the list of [contributors](https://github.com/dynamite8/resources-android-dev/graphs/contributors) who participated in this project.
