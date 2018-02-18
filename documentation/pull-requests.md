@@ -22,3 +22,14 @@
 5. Use the diff viewer on GitHub to create a pull request via a discussion.
 6. Make any requested changes.
 7. The pull request is then merged (usually into the master branch) and the topic branch is deleted from the upstream (target) repo.
+
+### Steps to rebasing
+
+You'll need to rebase before working or creating a PR.
+
+1. Checkout the master branch `git checkout master`
+2. Grab the updated changes from repository `git fetch`
+3. `git pull --rebase origin master`
+4. Checkout your working branch `git checkout <branch name>`
+5. Pull in changes from master to your branch `git rebase master`
+6. Upload your changes to the repo `git push -f`
