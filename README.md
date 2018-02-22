@@ -44,7 +44,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Jenny Chang Ho** - *Initial work* - [Tip Top Good Studio](http://tiptopgoodstudio.com)
-* **Janice Wildrick** - *Initial work* - MVVM Arechitecture, Room database
+* **Janice Wildrick** - *Initial work* - MVVM Arechitecture, Room SQLite database
 * **Olga Agafonova** - *Initial work*
 * **Ljeoma Ezeonyebuchi** - *Initial work*
 * **Divya** - *Initial work*
