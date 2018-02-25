@@ -1,6 +1,6 @@
 # Android Resources
 
-This project will serve to collect and share resources for learning to become an android developer.
+We will be collecting and sharing Android related resources as part of this project.  Together we will learn to become awesome android developers.
 
 ## Getting Started
 
