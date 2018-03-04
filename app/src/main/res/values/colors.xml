@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
+    <color name="row_background_color">#FFFFFFFF</color>
+
+    <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
+    <color name="list_background_color">#FF555555</color>
 </resources>
