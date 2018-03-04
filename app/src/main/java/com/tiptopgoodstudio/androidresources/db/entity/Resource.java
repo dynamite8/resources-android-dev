@@ -1,23 +1,57 @@
 package com.tiptopgoodstudio.androidresources.db.entity;
 
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 /**
- * A basic class representing an entity that is a row in a multi-column database table.
- *
- * @ Entity - You must annotate the class as an entity and supply a table name if not class name.
- * @ PrimaryKey - You must identify the primary key.
- * @ ColumnInfo - You must supply the column name if it is different from the variable name.
- *
- * See the documentation for the full rich set of annotations.
- * https://developer.android.com/topic/libraries/architecture/room.html
+ * Entity component required to create Room db
+ * resource_table will be created automatically
  */
 
+@Entity(tableName = "resource_table")
 public class Resource {
 
-    //TODO:  Create entity according to the following codelab and github repo examples:
-    //https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#3
-    //https://github.com/googlecodelabs/android-room-with-a-view/blob/master/app/src/main/java/com/example/android/roomwordssample/Word.java
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int resourceId;
+    private String resourceTopic;
+    private String resourceDescription;
+    private String resourceUrl;
 
-    //The entity should contain the following fields:  resourceId, resourceTopic, resourceTitle, resourceUrl
+    public Resource(String resourceTopic, String resourceDescription, String resourceUrl) {
+        this.resourceTopic = resourceTopic;
+        this.resourceDescription = resourceDescription;
+        this.resourceUrl = resourceUrl;
+    }
 
+    @NonNull
+    public int getResourceId() {
+        return resourceId;
+    }
+
+    public String getResourceTopic() {
+        return resourceTopic;
+    }
+
+    public void setResourceTopic(String resourceTopic) {
+        this.resourceTopic = resourceTopic;
+    }
+
+    public String getResourceDescription() {
+        return resourceDescription;
+    }
+
+    public void setResourceDescription(String resourceDescription) {
+        this.resourceDescription = resourceDescription;
+    }
+
+    public String getResourceUrl() {
+        return resourceUrl;
+    }
+
+    public void setResourceUrl(String resourceUrl) {
+        this.resourceUrl = resourceUrl;
+    }
 }
