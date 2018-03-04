@@ -1,6 +1,6 @@
 # Android Resources
 
-This project will serve to collect and share resources for learning to become an android developer.
+We will be collecting and sharing Android related resources as part of this project.  Together we will learn to become awesome android developers.
 
 ## Getting Started
 
@@ -44,7 +44,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## Authors
 
 * **Jenny Chang Ho** - *Initial work* - [Tip Top Good Studio](http://tiptopgoodstudio.com)
-* **Janice Wildrick** - *Initial work*
+* **Janice Wildrick** - *Initial work* - MVVM Arechitecture, Room SQLite database
 * **Olga Agafonova** - *Initial work*
 * **Ljeoma Ezeonyebuchi** - *Initial work*
 * **Divya** - *Initial work*
