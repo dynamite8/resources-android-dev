@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Created by Divya on 3/3/2018.
+  For GrowWithGoogleChallengeScholarship Women In Technology Learning Project
+  Android Dev Resources
+
+  This page is the layout for an item. A list of such items is displayed as a recycler view in
+  resource_list.xml
+ -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding"
+    android:background="@color/row_background_color"
+    android:layout_marginBottom = "@dimen/row_margin_bottom">
+
+    <ImageView
+        android:id="@+id/favicon"
+        android:layout_width="@dimen/favicon_image_size"
+        android:layout_height="@dimen/favicon_image_size"
+        android:background="@drawable/default_favicon"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/favicon_margin_right"
+        />
+
+    <TextView
+        android:id="@+id/tv_resource_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/favicon"
+        android:layout_centerVertical="true"
+        android:text="@string/resource_item_title"
+        style="@style/TextAppearance.AppCompat.Title"
+        />
+
+</RelativeLayout>
