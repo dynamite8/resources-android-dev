@@ -1,20 +1,32 @@
 package com.tiptopgoodstudio.androidresources.db;
 
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.content.Context;
 
-/**
- * This is the backend. The database. This used to be done by the OpenHelper.
- * The fact that this has very few comments emphasizes its coolness.
- */
+import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
+import com.tiptopgoodstudio.androidresources.db.entity.Resource;
 
+
+@Database(entities = {Resource.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
-    /** TODO:  Create RoomDatabase according to the following codelab and github repo example:
-     *      https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#6
-     *      https://github.com/googlecodelabs/android-persistence/blob/master/app/src/main/java/com/example/android/persistence/codelab/db/AppDatabase.java
-     *      Note that the db instance is a Singleton.  Although the use of this design pattern was generally discouraged in Android development
-     *      in the past, with Room implementation it is now standard practice
-     **/
+    private static final String RESOURCE_DATABASE = "resource_database";
+    private static AppDatabase INSTANCE;
 
+    public abstract ResourceDao resourceDao();
 
+    static AppDatabase getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            AppDatabase.class, RESOURCE_DATABASE)
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }
 }

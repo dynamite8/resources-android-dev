@@ -1,11 +1,23 @@
 package com.tiptopgoodstudio.androidresources;
 
 
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+
+import com.tiptopgoodstudio.androidresources.db.AppDatabase;
+import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
+import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+
+import java.util.List;
+
 public class ResourceRepository {
 
-    //TODO:  Create ResourceRepository according to the following codelab and github repo examples:
-    //https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#7
-    //https://github.com/googlecodelabs/android-room-with-a-view/blob/master/app/src/main/java/com/example/android/roomwordssample/WordRepository.java
+    private ResourceDao mResourceDao;
+    private LiveData<List<Resource>> mAllResources;
+
+    ResourceRepository(Application application) {
+
+    }
 
 
 
