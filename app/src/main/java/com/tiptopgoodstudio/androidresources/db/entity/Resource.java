@@ -20,6 +20,16 @@ public class Resource {
     private String resourceDescription;
     private String resourceUrl;
 
+    public String getResourceFormat() {
+        return resourceFormat;
+    }
+
+    public void setResourceFormat(String resourceFormat) {
+        this.resourceFormat = resourceFormat;
+    }
+
+    private String resourceFormat;
+
     public Resource(String resourceTopic, String resourceDescription, String resourceUrl) {
         this.resourceTopic = resourceTopic;
         this.resourceDescription = resourceDescription;
