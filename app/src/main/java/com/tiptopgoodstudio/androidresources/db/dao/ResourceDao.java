@@ -52,7 +52,4 @@ void delete(Resource resource);
 
 @Query("SELECT resourceFormat FROM resource_table WHERE resourceId=:id ")
     String getResourceFormat (int id);
-
-
-
 }
