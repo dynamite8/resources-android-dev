@@ -15,9 +15,7 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String RESOURCE_DATABASE = "resource_database";
     private static AppDatabase INSTANCE;
 
-    public abstract ResourceDao resourceDao();
-
-    static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
@@ -29,4 +27,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    public abstract ResourceDao resourceDao();
 }

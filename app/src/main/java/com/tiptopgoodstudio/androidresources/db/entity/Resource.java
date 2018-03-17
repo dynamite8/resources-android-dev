@@ -20,6 +20,10 @@ public class Resource {
     private String resourceDescription;
     private String resourceUrl;
 
+    public void setResourceId(@NonNull int resourceId) {
+
+    }
+
     public String getResourceFormat() {
         return resourceFormat;
     }
