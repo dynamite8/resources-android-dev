@@ -1,6 +1,9 @@
 package com.tiptopgoodstudio.androidresources.db.dao;
 
 
+import android.arch.persistence.room.Dao;
+
+@Dao
 public interface ResourceDao {
 
     /** TODO:  Create dao according to the following codelab and github repo example:

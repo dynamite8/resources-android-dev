@@ -45,6 +45,8 @@ public class Resource {
         return resourceTopic;
     }
 
+    public void setResourceId(int resourceId) { this.resourceId = resourceId; }
+
     public void setResourceTopic(String resourceTopic) {
         this.resourceTopic = resourceTopic;
     }
