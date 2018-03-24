@@ -1,4 +1,6 @@
-package com.tiptopgoodstudio.androidresources; /**
+package com.tiptopgoodstudio.androidresources;
+
+/**
  * Created by Divya on 3/3/2018.
  * For GrowWithGoogleChallengeScholarship Women In Technology Learning Project
  * Android Dev Resources
