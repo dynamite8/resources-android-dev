@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+  Created by Divya on 3/3/2018.
+  For GrowWithGoogleChallengeScholarship Women In Technology Learning Project
+  Android Dev Resources
+
+  This page displays a Recycler View list of items. The layout for each item is defined in
+  resource_item.xml
+
+  This was converted to fragment_resources.xml on 03/22/2018 by Olga Agafonova.
+ -->
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

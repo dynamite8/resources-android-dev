@@ -98,9 +98,4 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    public void gotoResourcesPage() {
-        Intent resourceIntent = new Intent(this, ResourceListActivity.class);
-        startActivity(resourceIntent);
-    }
-
 }
