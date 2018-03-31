@@ -1,20 +1,55 @@
 package com.tiptopgoodstudio.androidresources.db.dao;
 
 
+
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
+import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+
+import java.util.List;
+
+import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
+import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface ResourceDao {
 
-    /** TODO:  Create dao according to the following codelab and github repo example:
-     *      https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#4
-     *      https://github.com/googlecodelabs/android-persistence/blob/master/app/src/main/java/com/example/android/persistence/codelab/db/BookDao.java
-     *      Note that the business logic (which CRUD method will be needed) will not follow the above example exactly.
-     *      An evaluation of the app requirements should be done to determine which of the methods should be implemented
+    /**
+     *      Dao (Data access object) is an interface that define the database interactions.
+     *      Room will generate an implementation during the run time.
      *
-     *      Note:  A query method returning all Resource objects should be wrapped in a LiveData wrapper
-     *      https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#5
      **/
+@Insert(onConflict =  IGNORE)
+    void insertResource (Resource resource);
+
+@Insert (onConflict = IGNORE)
+void insertResources( Resource...resources);
 
 
+@Query ("SELECT * FROM resource_table")
+    LiveData<List<Resource>> getResources();
+
+@Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
+LiveData<List<Resource>> getTopicResources (String topic);
+
+@Query ("SELECT * FROM resource_table WHERE resourceId= :id")
+Resource getResourceById(int id);
+
+
+@Update (onConflict = REPLACE)
+    void updateResource (Resource resource);
+
+@Query("DELETE FROM resource_table")
+ void deleteAll();
+
+@Delete
+void delete(Resource resource);
+
+@Query("SELECT resourceFormat FROM resource_table WHERE resourceId=:id ")
+    String getResourceFormat (int id);
 }
