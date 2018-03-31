@@ -8,7 +8,6 @@ import android.content.Context;
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
 
-
 @Database(entities = {Resource.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -16,7 +15,6 @@ public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract ResourceDao resourceDao();
-
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -31,5 +29,4 @@ public abstract class AppDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public abstract ResourceDao resourceDao();
 }

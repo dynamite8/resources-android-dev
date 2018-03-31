@@ -13,34 +13,19 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "resource_table")
 public class Resource {
 
-
-
-
     @NonNull
     @PrimaryKey(autoGenerate = true)
     private int resourceId;
     private String resourceTopic;
     private String resourceDescription;
     private String resourceUrl;
-
-    public void setResourceId(@NonNull int resourceId) {
-
-    }
-
-    public String getResourceFormat() {
-        return resourceFormat;
-    }
-
-    public void setResourceFormat(String resourceFormat) {
-        this.resourceFormat = resourceFormat;
-    }
-
     private String resourceFormat;
 
-    public Resource(String resourceTopic, String resourceDescription, String resourceUrl) {
+    public Resource(String resourceTopic, String resourceDescription, String resourceUrl, String resourceFormat) {
         this.resourceTopic = resourceTopic;
         this.resourceDescription = resourceDescription;
         this.resourceUrl = resourceUrl;
+        this.resourceFormat = resourceFormat;
     }
 
     @NonNull
@@ -49,14 +34,12 @@ public class Resource {
     }
 
     public void setResourceId(@NonNull int resourceId) {
-        this.resourceId = resourceId;
+        //this method intentionally left blank
     }
 
     public String getResourceTopic() {
         return resourceTopic;
     }
-
-    public void setResourceId(int resourceId) { this.resourceId = resourceId; }
 
     public void setResourceTopic(String resourceTopic) {
         this.resourceTopic = resourceTopic;
@@ -77,4 +60,13 @@ public class Resource {
     public void setResourceUrl(String resourceUrl) {
         this.resourceUrl = resourceUrl;
     }
+
+    public String getResourceFormat() {
+        return resourceFormat;
+    }
+
+    public void setResourceFormat(String resourceFormat) {
+        this.resourceFormat = resourceFormat;
+    }
+
 }
