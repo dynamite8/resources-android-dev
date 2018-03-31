@@ -13,8 +13,11 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "resource_table")
 public class Resource {
 
-    @PrimaryKey(autoGenerate = true)
+
+
+
     @NonNull
+    @PrimaryKey(autoGenerate = true)
     private int resourceId;
     private String resourceTopic;
     private String resourceDescription;
@@ -45,9 +48,15 @@ public class Resource {
         return resourceId;
     }
 
+    public void setResourceId(@NonNull int resourceId) {
+        this.resourceId = resourceId;
+    }
+
     public String getResourceTopic() {
         return resourceTopic;
     }
+
+    public void setResourceId(int resourceId) { this.resourceId = resourceId; }
 
     public void setResourceTopic(String resourceTopic) {
         this.resourceTopic = resourceTopic;

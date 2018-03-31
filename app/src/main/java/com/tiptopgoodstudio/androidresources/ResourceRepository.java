@@ -5,6 +5,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+
 import com.tiptopgoodstudio.androidresources.db.AppDatabase;
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
@@ -16,6 +17,7 @@ public class ResourceRepository {
     private ResourceDao mResourceDao;
     private LiveData<List<Resource>> mAllResources;
 
+
     public ResourceRepository(Application application) {
 
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -23,6 +25,11 @@ public class ResourceRepository {
         mAllResources = mResourceDao.getResources();
     }
 
+LiveData<List<Resource>> getResouces()
+{
+    return mAllResources;
+}
+public void insertResource(Resource resource){
 
     public LiveData<List<Resource>> getAllResouces() {
         return mAllResources;
@@ -84,3 +91,5 @@ public class ResourceRepository {
         }
     }
 }
+
+

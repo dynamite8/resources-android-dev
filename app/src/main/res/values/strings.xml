@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">Android Resources</string>
 
-    <!-- Strings used in resource_item.xml (Added by Divya on 3/3/2018) -->
-    <string name="resource_item_title">URL Title goes here!</string>
+    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <string name="home_menu_item">Home</string>
 
-    <!-- Strings used in resource_list.xml (Added by Divya on 3/3/2018) -->
+    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <string name="resources_menu_item">Resources</string>
+
+    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <string name="settings_menu_item">Settings</string>
+
+    <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
+    <string name="search_hint">Resource...</string>
+
+    <string name="resourceOne">First</string>
+    <string name="resourceTwo">Second</string>
+    <string name="resourceThree">Third</string>
+    <string name="resourceFour">Fourth</string>
+
+    <!-- Strings used in resource_item.xml (Added by Divya on 3/3/2018) -->
+
+    <string name="resource_item_description">URL Description goes here!</string>
+
     <string name="error_message">Some error occured. Please try again!</string>
+
+
 </resources>

@@ -12,18 +12,29 @@
 
     <!-- Dimensions used throughout the app -->
 
+    <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
     <dimen name="padding">16dp</dimen>
 
-    <!-- Dimensions used in resource_item.xml -->
+    <dimen name="searchBarWidth">200dp</dimen>
+    <dimen name="searchBarHeight">32dp</dimen>
 
+    <dimen name="stickyNoteWidth">150dp</dimen>
+    <dimen name="stickyNoteHeight">150dp</dimen>
+
+    <dimen name="stickyNoteLandscapeWidth">120dp</dimen>
+    <dimen name="stickyNoteLandscapeHeight">120dp</dimen>
+
+    <dimen name="stickyTextWidth">75dp</dimen>
+    <dimen name="stickyTextHeight">32dp</dimen>
+    <dimen name="stickyMargin">50dp</dimen>
+
+    <!-- Dimensions used in resource_item.xml -->
     <dimen name="row_margin_bottom">2dp</dimen>
 
     <dimen name="favicon_image_size">32dp</dimen>
     <dimen name="favicon_margin_right">20dp</dimen>
 
-    <dimen name="textview_margin_bottom">10dp</dimen>
-
-    <!-- Dimensions used in resource_list.xml -->
+    <!-- Dimensions used in fragment_resources.xml -->
     <dimen name="progress_bar_size">42dp</dimen>
 
 

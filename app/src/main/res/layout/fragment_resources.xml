@@ -7,12 +7,16 @@
 
   This page displays a Recycler View list of items. The layout for each item is defined in
   resource_item.xml
+
+  This was converted to fragment_resources.xml on 03/22/2018 by Olga Agafonova.
  -->
 
-<FrameLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/list_background_color">
 
     <android.support.v7.widget.RecyclerView
@@ -36,4 +40,4 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
-</FrameLayout>
+</LinearLayout>
