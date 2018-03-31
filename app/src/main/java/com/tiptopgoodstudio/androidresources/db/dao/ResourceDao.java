@@ -20,36 +20,36 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 public interface ResourceDao {
 
     /**
-     *      Dao (Data access object) is an interface that define the database interactions.
-     *      Room will generate an implementation during the run time.
-     *
+     * Dao (Data access object) is an interface that define the database interactions.
+     * Room will generate an implementation during the run time.
      **/
-@Insert(onConflict =  IGNORE)
-    void insertResource (Resource resource);
+    @Insert(onConflict = IGNORE)
+    void insertResource(Resource resource);
 
-@Insert (onConflict = IGNORE)
-void insertResources( Resource...resources);
+    @Insert(onConflict = IGNORE)
+    void insertResources(Resource... resources);
 
 
-@Query ("SELECT * FROM resource_table")
+    @Query("SELECT * FROM resource_table")
     LiveData<List<Resource>> getResources();
 
-@Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
-LiveData<List<Resource>> getTopicResources (String topic);
+    @Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
+    LiveData<List<Resource>> getTopicResources(String topic);
 
-@Query ("SELECT * FROM resource_table WHERE resourceId= :id")
-Resource getResourceById(int id);
+    @Query("SELECT * FROM resource_table WHERE resourceId= :id")
+    Resource getResourceById(int id);
 
 
-@Update (onConflict = REPLACE)
-    void updateResource (Resource resource);
+    @Update(onConflict = REPLACE)
+    void updateResource(Resource resource);
 
-@Query("DELETE FROM resource_table")
- void deleteAll();
+    @Query("DELETE FROM resource_table")
+    void deleteAll();
 
-@Delete
-void delete(Resource resource);
+    @Delete
+    void delete(Resource resource);
 
-@Query("SELECT resourceFormat FROM resource_table WHERE resourceId=:id ")
-    String getResourceFormat (int id);
+    @Query("SELECT resourceFormat FROM resource_table WHERE resourceId=:id ")
+    String getResourceFormat(int id);
+
 }
