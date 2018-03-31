@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tiptopgoodstudio.androidresources.HomeFragment">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/stickyNote1"
+        android:layout_width="147dp"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_bigsticky"
+        app:layout_constraintRight_toLeftOf="@+id/stickyNote1Bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <ImageView
+        android:id="@+id/stickyNote1Bottom"
+        android:layout_width="@dimen/stickyNoteWidth"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_bigsticky"
+        app:layout_constraintLeft_toRightOf="@+id/stickyNote1"
+        app:layout_constraintRight_toLeftOf="@+id/stickyNote2"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <TextView
+        android:id="@+id/stickyNote1Text"
+        android:layout_width="@dimen/stickyTextWidth"
+        android:layout_height="@dimen/searchBarHeight"
+        android:layout_marginTop="48dp"
+        android:text="@string/resourceOne"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@+id/stickyNote1"
+        app:layout_constraintLeft_toLeftOf="@id/stickyNote1"
+        app:layout_constraintRight_toRightOf="@id/stickyNote1"
+        app:layout_constraintStart_toStartOf="@+id/stickyNote1"
+        app:layout_constraintTop_toTopOf="@+id/stickyNote1" />
+
+    <TextView
+        android:id="@+id/stickyNote1BottomText"
+        android:layout_width="@dimen/stickyTextWidth"
+        android:layout_height="@dimen/searchBarHeight"
+        android:layout_marginTop="48dp"
+        android:text="@string/resourceThree"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@+id/stickyNote1Bottom"
+        app:layout_constraintLeft_toLeftOf="@id/stickyNote1Bottom"
+        app:layout_constraintRight_toRightOf="@id/stickyNote1Bottom"
+        app:layout_constraintStart_toStartOf="@+id/stickyNote1Bottom"
+        app:layout_constraintTop_toTopOf="@+id/stickyNote1Bottom" />
+
+    <ImageView
+        android:id="@+id/stickyNote2"
+        android:layout_width="@dimen/stickyNoteWidth"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_bigsticky"
+        app:layout_constraintLeft_toRightOf="@+id/stickyNote1Bottom"
+        app:layout_constraintRight_toRightOf="@+id/stickyNote2Bottom"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <ImageView
+        android:id="@+id/stickyNote2Bottom"
+        android:layout_width="@dimen/stickyNoteWidth"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_bigsticky"
+        app:layout_constraintLeft_toRightOf="@+id/stickyNote2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <TextView
+        android:id="@+id/stickyNote2BottomText"
+        android:layout_width="@dimen/stickyTextWidth"
+        android:layout_height="32dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/resourceFour"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@+id/stickyNote2Bottom"
+        app:layout_constraintLeft_toLeftOf="@id/stickyNote2Bottom"
+        app:layout_constraintRight_toRightOf="@id/stickyNote2Bottom"
+        app:layout_constraintStart_toStartOf="@+id/stickyNote2Bottom"
+        app:layout_constraintTop_toTopOf="@+id/stickyNote2Bottom"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <TextView
+        android:id="@+id/stickyNote2Text"
+        android:layout_width="@dimen/stickyTextWidth"
+        android:layout_height="@dimen/searchBarHeight"
+        android:layout_marginTop="48dp"
+        android:text="@string/resourceTwo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@+id/stickyNote2"
+        app:layout_constraintLeft_toLeftOf="@id/stickyNote2"
+        app:layout_constraintRight_toRightOf="@id/stickyNote2"
+        app:layout_constraintStart_toStartOf="@+id/stickyNote2"
+        app:layout_constraintTop_toTopOf="@+id/stickyNote2"
+        tools:layout_editor_absoluteY="124dp" />
+
+
+
+</android.support.constraint.ConstraintLayout>

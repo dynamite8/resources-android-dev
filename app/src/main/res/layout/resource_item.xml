@@ -6,7 +6,9 @@
   Android Dev Resources
 
   This page is the layout for an item. A list of such items is displayed as a recycler view in
-  resource_list.xml
+  fragment_resources.xml
+
+  Added the resource URL hidden TextView (by Divya on 3/24/2018)
  -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,17 +24,21 @@
         android:layout_height="@dimen/favicon_image_size"
         android:background="@drawable/default_favicon"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/favicon_margin_right"
-        />
+        android:layout_marginRight="@dimen/favicon_margin_right" />
 
     <TextView
-        android:id="@+id/tv_resource_title"
+        android:id="@+id/tv_resource_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/favicon"
         android:layout_centerVertical="true"
-        android:text="@string/resource_item_title"
-        style="@style/TextAppearance.AppCompat.Title"
-        />
+        android:text="@string/resource_item_description"
+        style="@style/TextAppearance.AppCompat.Title" />
+
+    <TextView
+        android:id="@+id/tv_resource_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -4,10 +4,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorMenuItem">#FFFFFF</color>
 
     <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
     <color name="row_background_color">#FFFFFFFF</color>
 
     <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
     <color name="list_background_color">#FF555555</color>
+
+    <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
+    <color name="search_background_color">#D6D3D3</color>
+
 </resources>
