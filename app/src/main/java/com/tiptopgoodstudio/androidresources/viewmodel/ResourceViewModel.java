@@ -3,6 +3,7 @@ package com.tiptopgoodstudio.androidresources.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.tiptopgoodstudio.androidresources.ResourceRepository;
@@ -15,38 +16,39 @@ public class ResourceViewModel extends AndroidViewModel {
 
 
     private ResourceRepository mResourceRepository;
-    private LiveData<List<Resource>> mAllResources;
+    private MutableLiveData<List<Resource>> mResources;
 
 
     public ResourceViewModel(@NonNull Application application) {
         super(application);
         mResourceRepository = new ResourceRepository(application);
-        mAllResources = mResourceRepository.getAllResouces();
+        //upon creation, ViewModel caches list of all resources not filtered by topic
+        mResources = mResourceRepository.getAllResouces();
 
     }
 
-    public LiveData<List<Resource>> getAllResources() {
-        return mAllResources;
+    /**
+     * returns list of resources stored in ViewModel member variable
+     * @return MutableLiveData<List<Resource>>
+     */
+    public MutableLiveData<List<Resource>> getResources() {
+        return mResources;
     }
 
-    public void insert(Resource resource) {
-        mResourceRepository.insert(resource);
+    /**
+     * update mResources MutableLiveData<List<Resource>> with new
+     * List<Resource> which contains all records in db resource_table
+     */
+    public void updateUiWithAllResources() {
+        mResources.postValue(mResourceRepository.getAllResourcesList());
     }
 
-    public void update(Resource resource) {
-        mResourceRepository.updateResource(resource);
-    }
-
-    public LiveData<List<Resource>> getTopicResources(String topic) {
-        return mResourceRepository.getTopicResources(topic);
-    }
-
-    public Resource getResourceById(int id) {
-        return mResourceRepository.getResourceById(id);
-    }
-
-    public String getResourceFormat(int id) {
-        return mResourceRepository.getResourceFormat(id);
-
+    /**
+     * update mResources MutableLiveData<List<Resource>> with new
+     * List<Resource> which contains all records matching topic parameter
+     */
+    public void updateUiWithTopicResources(String topic) {
+        mResources.postValue(mResourceRepository.getTopicResourcesList(topic));
     }
 }
+

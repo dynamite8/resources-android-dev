@@ -25,7 +25,6 @@ public interface ResourceDao {
 
     /**
      * insert single Reseource object into resource_table
-     *
      * @param resource
      */
     @Insert(onConflict = IGNORE)
@@ -33,7 +32,6 @@ public interface ResourceDao {
 
     /**
      * insert multiple Resource objects into resource_table
-     *
      * @param resources
      */
     @Insert(onConflict = IGNORE)
@@ -41,20 +39,33 @@ public interface ResourceDao {
 
     /**
      * query db for all resourcce records from resource_table
-     *
-     * @return all resource records in LiveData wrapper
+     * @return MutableLiveData<List<Resource>>
      */
     @Query("SELECT * FROM resource_table")
-    LiveData<List<Resource>> getResources();
+    MutableLiveData<List<Resource>> getResources();
+
+    /**
+     * query db for all resource recors from resource_table
+     * @return List<Resource> list of all resources in db
+     */
+    @Query("SELECT * FROM resource_table")
+    List<Resource> getAllResourcesList();
 
     /**
      * query db for all resource records wihich match topic parameter from resource_table
-     *
      * @param topic
      * @return all resource records wihich match topic parameter
      */
     @Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
     MutableLiveData<List<Resource>> getTopicResources(String topic);
+
+    /**
+     * query db for all resource records which match topic parameter from resource_table
+     * @param topic
+     * @return List<Resource> list of all resources matching topic
+     */
+    @Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
+    List<Resource> getTopicResourcesList(String topic);
 
     /**
      * query resource_table for all resource record which matches resourceId
