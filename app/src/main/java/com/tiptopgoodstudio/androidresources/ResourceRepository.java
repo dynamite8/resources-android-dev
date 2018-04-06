@@ -1,10 +1,9 @@
 package com.tiptopgoodstudio.androidresources;
 
-
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.os.AsyncTask;
-
 
 import com.tiptopgoodstudio.androidresources.db.AppDatabase;
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
@@ -17,7 +16,11 @@ public class ResourceRepository {
     private ResourceDao mResourceDao;
     private LiveData<List<Resource>> mAllResources;
 
-
+    /**
+     * Constructor
+     *
+     * @param application
+     */
     public ResourceRepository(Application application) {
 
         AppDatabase db = AppDatabase.getDatabase(application);
@@ -25,71 +28,58 @@ public class ResourceRepository {
         mAllResources = mResourceDao.getResources();
     }
 
-LiveData<List<Resource>> getResouces()
-{
-    return mAllResources;
-}
-public void insertResource(Resource resource){
-
+    /**
+     * method returns all resource records in Room db resource_table in LiveData wrapper
+     *
+     * @return LiveData<List   <   Resource>>
+     */
     public LiveData<List<Resource>> getAllResouces() {
         return mAllResources;
     }
 
-    public LiveData<List<Resource>> getTopicResources(String topic) {
+    /**
+     * method returns all resource records which match topic parameter from
+     * Room db resource_table MutableLiveData wrapper
+     *
+     * @param topic
+     * @return MutableLiveData<List   <   Resource>>
+     */
+    public MutableLiveData<List<Resource>> getTopicResources(String topic) {
         return mResourceDao.getTopicResources(topic);
     }
 
-    public Resource getResourceById(int id) {
-        return mResourceDao.getResourceById(id);
+    /**
+     * delete all records in Room db resource_table
+     */
+    private void deleteAllRecords() {
+        mResourceDao.deleteAll();
     }
 
-    public void insert(Resource resource) {
-
-        new InsertAsyncTask(mResourceDao).execute(resource);
+    /**
+     * Method to insert multiple resource objects into Room db resource_table
+     * Calls InssertResourceAsyncTask so as to perform work off main thread
+     *
+     * @param resources
+     */
+    private void insertResources(Resource... resources) {
+        new InsertResourceAsyncTask(mResourceDao).execute(resources);
     }
 
-    private static class InsertAsyncTask extends AsyncTask<Resource, Void, Void> {
-        private ResourceDao mAsyncTaskDao;
+    /**
+     * Inner AsyncTask subclass to insert Resource objects into Room db resource_table
+     */
+    private static class InsertResourceAsyncTask extends AsyncTask<Resource, Void, Void> {
+        private ResourceDao taskDao;
 
-        InsertAsyncTask(ResourceDao dao) {
-            mAsyncTaskDao = dao;
+        InsertResourceAsyncTask(ResourceDao dao) {
+            this.taskDao = dao;
         }
 
         @Override
-        protected Void doInBackground(final Resource... resources) {
-
-            mAsyncTaskDao.insertResource(resources[0]);
+        protected Void doInBackground(Resource... resources) {
+            taskDao.insertResources(resources);
             return null;
-
-
         }
     }
 
-    public String getResourceFormat(int id) {
-        return mResourceDao.getResourceFormat(id);
-    }
-
-    public void updateResource(Resource resource) {
-        new UpdateAsyncTask(mResourceDao).execute(resource);
-    }
-
-
-    private static class UpdateAsyncTask extends AsyncTask<Resource, Void, Void> {
-        private ResourceDao mAsyncTaskDao;
-
-        UpdateAsyncTask(ResourceDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Resource... resource) {
-
-            mAsyncTaskDao.updateResource(resource[0]);
-            return null;
-
-
-        }
-    }
 }
-
-
