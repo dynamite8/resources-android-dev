@@ -14,41 +14,39 @@ import java.util.List;
 
 public class ResourceViewModel extends AndroidViewModel {
 
-
     private ResourceRepository mResourceRepository;
-    private MutableLiveData<List<Resource>> mResources;
+    private List<Resource> mResources;
 
 
     public ResourceViewModel(@NonNull Application application) {
         super(application);
         mResourceRepository = new ResourceRepository(application);
         //upon creation, ViewModel caches list of all resources not filtered by topic
-        mResources = mResourceRepository.getAllResouces();
-
+        mResources = mResourceRepository.getAllResourcesList();
     }
 
     /**
      * returns list of resources stored in ViewModel member variable
-     * @return MutableLiveData<List<Resource>>
+     * @return List<Resource>
      */
-    public MutableLiveData<List<Resource>> getResources() {
+    public List<Resource> getResources() {
         return mResources;
     }
 
     /**
-     * update mResources MutableLiveData<List<Resource>> with new
-     * List<Resource> which contains all records in db resource_table
+     * retrieve, save to member variable and return list of all resources in db
      */
-    public void updateUiWithAllResources() {
-        mResources.postValue(mResourceRepository.getAllResourcesList());
+    public List<Resource> getAllResources() {
+        mResources = mResourceRepository.getAllResourcesList();
+        return mResources;
     }
 
     /**
-     * update mResources MutableLiveData<List<Resource>> with new
-     * List<Resource> which contains all records matching topic parameter
+     * retrieve, save to member variable and return list of all topic-specific resources in db
      */
-    public void updateUiWithTopicResources(String topic) {
-        mResources.postValue(mResourceRepository.getTopicResourcesList(topic));
+    public List<Resource> getTopicResources(String topic) {
+        mResources = mResourceRepository.getTopicResourcesList(topic);
+        return mResources;
     }
 }
 

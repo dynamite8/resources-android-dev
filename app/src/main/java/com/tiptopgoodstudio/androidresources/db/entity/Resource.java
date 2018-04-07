@@ -2,6 +2,7 @@ package com.tiptopgoodstudio.androidresources.db.entity;
 
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -27,6 +28,11 @@ public class Resource {
         this.resourceDescription = resourceDescription;
         this.resourceUrl = resourceUrl;
         this.resourceFormat = resourceFormat;
+    }
+
+    @Ignore
+    public Resource(String resourceTopic, String resourceDescription, String resourceUrl) {
+        this(resourceTopic, resourceDescription, resourceUrl, null);
     }
 
     @NonNull

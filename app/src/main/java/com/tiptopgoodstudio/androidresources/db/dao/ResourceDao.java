@@ -38,26 +38,11 @@ public interface ResourceDao {
     void insertResources(Resource... resources);
 
     /**
-     * query db for all resourcce records from resource_table
-     * @return MutableLiveData<List<Resource>>
-     */
-    @Query("SELECT * FROM resource_table")
-    MutableLiveData<List<Resource>> getResources();
-
-    /**
      * query db for all resource recors from resource_table
      * @return List<Resource> list of all resources in db
      */
     @Query("SELECT * FROM resource_table")
     List<Resource> getAllResourcesList();
-
-    /**
-     * query db for all resource records wihich match topic parameter from resource_table
-     * @param topic
-     * @return all resource records wihich match topic parameter
-     */
-    @Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
-    MutableLiveData<List<Resource>> getTopicResources(String topic);
 
     /**
      * query db for all resource records which match topic parameter from resource_table

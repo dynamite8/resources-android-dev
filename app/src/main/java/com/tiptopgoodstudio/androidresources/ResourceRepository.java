@@ -14,7 +14,6 @@ import java.util.List;
 public class ResourceRepository {
 
     private ResourceDao mResourceDao;
-    private MutableLiveData<List<Resource>> mResources;
 
     /**
      * Constructor
@@ -25,16 +24,6 @@ public class ResourceRepository {
 
         AppDatabase db = AppDatabase.getDatabase(application);
         mResourceDao = db.resourceDao();
-        mResources = mResourceDao.getResources();
-    }
-
-    /**
-     * method returns all resource records in Room db resource_table in LiveData wrapper
-     *
-     * @return LiveData<List   <   Resource>>
-     */
-    public MutableLiveData<List<Resource>> getAllResouces() {
-        return mResources;
     }
 
     /**
@@ -43,17 +32,6 @@ public class ResourceRepository {
      */
     public List<Resource> getAllResourcesList() {
         return mResourceDao.getAllResourcesList();
-    }
-
-    /**
-     * method returns all resource records which match topic parameter from
-     * Room db resource_table MutableLiveData wrapper
-     *
-     * @param topic
-     * @return MutableLiveData<List   <   Resource>>
-     */
-    public MutableLiveData<List<Resource>> getTopicResources(String topic) {
-        return mResourceDao.getTopicResources(topic);
     }
 
     /**
@@ -99,7 +77,5 @@ public class ResourceRepository {
             return null;
         }
     }
-
-
 
 }
