@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
+import com.tiptopgoodstudio.androidresources.ui.MainFragment;
 import com.tiptopgoodstudio.androidresources.ui.ResourcesFragment;
 import com.tiptopgoodstudio.androidresources.ui.SectionAdapter;
 import com.tiptopgoodstudio.androidresources.ui.SettingsFragment;
@@ -81,11 +82,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setupViewPager(mViewPager);
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
         SectionAdapter adapter = new SectionAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new MainFragment(), "Main");
         adapter.addFragment(new ResourcesFragment(), "Resources");
         adapter.addFragment(new SettingsFragment(), "Settings");
         viewPager.setAdapter(adapter);
