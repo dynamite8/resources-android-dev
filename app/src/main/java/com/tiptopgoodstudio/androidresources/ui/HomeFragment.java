@@ -1,17 +1,13 @@
-package com.tiptopgoodstudio.androidresources;
+package com.tiptopgoodstudio.androidresources.ui;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
-import android.widget.Toast;
+
+import com.tiptopgoodstudio.androidresources.R;
 
 /**
  * Updated on 03/22/2018 by Olga Agafonova.

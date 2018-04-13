@@ -1,23 +1,16 @@
 package com.tiptopgoodstudio.androidresources;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+
+import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
+import com.tiptopgoodstudio.androidresources.ui.ResourcesFragment;
+import com.tiptopgoodstudio.androidresources.ui.SectionAdapter;
+import com.tiptopgoodstudio.androidresources.ui.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

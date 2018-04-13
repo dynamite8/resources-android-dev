@@ -1,4 +1,4 @@
-package com.tiptopgoodstudio.androidresources;
+package com.tiptopgoodstudio.androidresources.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.tiptopgoodstudio.androidresources.R;
+import com.tiptopgoodstudio.androidresources.ResourceListAdapter;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,7 @@ import java.util.List;
  *
  */
 public class ResourcesFragment extends Fragment
-                                implements ResourceListAdapter.ResourceClickListener{
+                                implements ResourceListAdapter.ResourceClickListener {
 
     private static final String TAG = HomeFragment.class.getSimpleName();
 

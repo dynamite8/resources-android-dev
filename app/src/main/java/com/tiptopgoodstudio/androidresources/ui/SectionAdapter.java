@@ -1,4 +1,4 @@
-package com.tiptopgoodstudio.androidresources;
+package com.tiptopgoodstudio.androidresources.ui;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
