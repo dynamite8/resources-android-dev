@@ -11,7 +11,6 @@
     <string name="settings_menu_item">Settings</string>
 
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
-    <string name="search_hint">Resource...</string>
 
     <string name="resourceOne">First</string>
     <string name="resourceTwo">Second</string>
@@ -23,6 +22,8 @@
     <string name="resource_item_description">URL Description goes here!</string>
 
     <string name="error_message">Some error occured. Please try again!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 
 
 </resources>

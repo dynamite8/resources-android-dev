@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/stickyNote"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_width="@dimen/stickyNoteWidth"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_note"
+        android:contentDescription="@string/resourceOne"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/stickyNoteText"
+        android:layout_height="@dimen/stickyNoteHeight"
+        android:layout_width="@dimen/stickyNoteWidth"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+</merge>
+
+
+

@@ -13,6 +13,5 @@
     <color name="list_background_color">#FF555555</color>
 
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
-    <color name="search_background_color">#D6D3D3</color>
 
 </resources>
