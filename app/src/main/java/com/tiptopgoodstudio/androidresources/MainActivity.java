@@ -2,6 +2,7 @@ package com.tiptopgoodstudio.androidresources;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,18 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import android.support.v7.app.AppCompatActivity;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.tiptopgoodstudio.androidresources.db.entity.Resources;
 
 import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
 import com.tiptopgoodstudio.androidresources.ui.InnerResourceFrag;
@@ -31,10 +44,53 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnSt
     private MenuItem prevMenuItem;
     private List<Fragment> mFragList = new ArrayList<Fragment>();
 
+    // Firebase references
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mResourcesDatabaseReference;
+    private ChildEventListener mResourcesEventListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mSectionAdapter = new SectionAdapter(getSupportFragmentManager());
+
+        // Firebase
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mResourcesDatabaseReference = mFirebaseDatabase.getReference().child("resources");
+        mResourcesEventListener = new ChildEventListener() {
+
+            // method is called when first load and also on new resources being added
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                // get the value at point in time to our matching entity
+                // data is deserialized into Resources class
+                Resources resource = dataSnapshot.getValue(Resources.class);
+                System.out.println(resource.getResourceURL());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mResourcesDatabaseReference.addChildEventListener(mResourcesEventListener);
 
         // Set up the ViewPager with the section adapter.
         mViewPager = (ViewPager) findViewById(R.id.viewpager);

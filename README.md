@@ -1,6 +1,6 @@
 # Android Resources
 
-We will be collecting and sharing Android related resources as part of this project.  Together we will learn to become awesome android developers.
+We will be collecting and sharing Android related resources as part of this project.  Together we will learn to become awesome Android developers.
 
 ## Getting Started
 
@@ -33,18 +33,18 @@ TBD
 
 ### And coding style tests
 
-We will follow the Official raywenderlich.com's Java style guide found here https://github.com/raywenderlich/java-style-guide
+We will follow the Official raywenderlich.com's [Java style guide](https://github.com/raywenderlich/java-style-guide)
 
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 
 ## Authors
 
 * **Jenny Chang Ho** - *Initial work* - [Tip Top Good Studio](http://tiptopgoodstudio.com)
-* **Janice Wildrick** - *Initial work* - MVVM Arechitecture, Room SQLite database
+* **Janice Wildrick** - *Initial work* - MVVM Architecture, Room SQLite database
 * **Olga Agafonova** - *Initial work*
 * **Ijeoma Ezeonyebuchi** - *Initial work* - Unit and UI Testing
 * **Divya** - *Initial work*
