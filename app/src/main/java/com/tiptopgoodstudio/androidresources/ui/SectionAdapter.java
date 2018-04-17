@@ -3,6 +3,13 @@ package com.tiptopgoodstudio.androidresources.ui;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.ViewGroup;
+
+import com.tiptopgoodstudio.androidresources.R;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,32 +19,29 @@ import java.util.List;
  * Created by Olga Agafonova on 3/17/18.
  */
 
-public class SectionAdapter extends FragmentPagerAdapter{
+public class SectionAdapter extends FragmentStatePagerAdapter {
 
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    private static int NUM_ITEMS = 3;
 
     public SectionAdapter(FragmentManager manager) {
         super(manager);
     }
 
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
-    }
-
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
+
+        if (position == 0)
+            return new MainFragment();
+        else if (position == 1)
+            return new ResourcesFragment();
+        else if (position == 2)
+            return new SettingsFragment();
+        else
+            return null;
     }
 
     @Override
     public int getCount()  {
-        return mFragmentList.size();
+      return NUM_ITEMS;
     }
 }

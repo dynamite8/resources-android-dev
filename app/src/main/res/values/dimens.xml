@@ -15,16 +15,10 @@
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
     <dimen name="padding">16dp</dimen>
 
-    <dimen name="searchBarWidth">200dp</dimen>
-    <dimen name="searchBarHeight">32dp</dimen>
-
-    <dimen name="stickyNoteWidth">250dp</dimen>
-    <dimen name="stickyNoteHeight">250dp</dimen>
+    <dimen name="stickyNoteWidth">200dp</dimen>
+    <dimen name="stickyNoteHeight">200dp</dimen>
 
     <dimen name="stickyMargin">16dp</dimen>
-
-    <dimen name="resourceFragWidth">100dp</dimen>
-    <dimen name="resourceFragHeight">100dp</dimen>
 
     <!-- Dimensions used in resource_item.xml -->
     <dimen name="row_margin_bottom">2dp</dimen>

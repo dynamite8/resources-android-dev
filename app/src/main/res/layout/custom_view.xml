@@ -6,15 +6,17 @@
         android:layout_height="@dimen/stickyNoteHeight"
         android:layout_width="@dimen/stickyNoteWidth"
         android:gravity="center"
-        android:src="@drawable/ic_bigsticky"
-        android:contentDescription="@string/resourceOne"/>
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_note"
+        android:contentDescription="@string/resourceOne"
+        android:clickable="true"/>
 
     <TextView
         android:id="@+id/stickyNoteText"
         android:layout_height="@dimen/stickyNoteHeight"
         android:layout_width="@dimen/stickyNoteWidth"
         android:gravity="center"
-        android:layout_marginTop="@dimen/stickyMargin"
+        android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 </merge>

@@ -4,18 +4,22 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiptopgoodstudio.androidresources.R;
+import com.tiptopgoodstudio.androidresources.ResourceListAdapter;
 
 /*
 *  Added on 04/13/2018 by Olga Agafonova.
@@ -32,6 +36,32 @@ class StickyNoteView extends RelativeLayout
     private String mStickyString;
     private TextView mStickyTextView;
 
+    public Drawable getStickyDrawable() {
+        return mStickyDrawable;
+    }
+
+    /*
+    * Use invalidate() and requestLayout() to redraw the view
+    * */
+    public void setStickyDrawable(Drawable iStickyDrawable){
+        mStickyDrawable = iStickyDrawable;
+        invalidate();
+        requestLayout();
+    }
+
+    public ImageView getStickyImageView() {
+        return mStickyImageView;
+    }
+
+    /*
+     * Use invalidate() and requestLayout() to redraw the view
+     * */
+    public void setStickyImageView(ImageView iImageView) {
+        mStickyImageView = iImageView;
+        invalidate();
+        requestLayout();
+    }
+
     public StickyNoteView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -44,7 +74,7 @@ class StickyNoteView extends RelativeLayout
         }
         catch(Exception e)
         {
-            Log.d(TAG, e.toString());
+            //Log.d(TAG, e.toString());
         }
         finally {
             a.recycle();
@@ -55,12 +85,14 @@ class StickyNoteView extends RelativeLayout
         inflater.inflate(R.layout.custom_view, this, true);
 
         mStickyImageView = (ImageView) getChildAt(0);
+
         if(mStickyDrawable != null) {
             mStickyImageView.setBackground(mStickyDrawable);
         }
 
         mStickyTextView = (TextView) getChildAt(1);
         mStickyTextView.setText(mStickyString);
+
     }
 
     public StickyNoteView(Context context) {

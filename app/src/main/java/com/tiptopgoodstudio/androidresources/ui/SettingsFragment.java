@@ -11,7 +11,7 @@ import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
 
 public class SettingsFragment extends Fragment {
 
-    private static final String TAG = HomeFragment.class.getSimpleName();
+    public static final String TAG = HomeFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -38,7 +38,7 @@ import java.util.List;
 public class ResourcesFragment extends Fragment
                                 implements ResourceListAdapter.ResourceClickListener {
 
-    private static final String TAG = HomeFragment.class.getSimpleName();
+    public static final String TAG = HomeFragment.class.getSimpleName();
 
     // A private RecyclerView variable called mRecyclerView
     private RecyclerView mRecyclerView;

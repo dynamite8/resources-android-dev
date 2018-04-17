@@ -2,34 +2,44 @@ package com.tiptopgoodstudio.androidresources;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
+import com.tiptopgoodstudio.androidresources.ui.InnerResourceFrag;
 import com.tiptopgoodstudio.androidresources.ui.MainFragment;
 import com.tiptopgoodstudio.androidresources.ui.ResourcesFragment;
 import com.tiptopgoodstudio.androidresources.ui.SectionAdapter;
 import com.tiptopgoodstudio.androidresources.ui.SettingsFragment;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnStickyClickListener {
 
     private BottomNavigationView mBottomNavigationView;
     private SectionAdapter mSectionAdapter;
     private ViewPager mViewPager;
     private MenuItem prevMenuItem;
+    private List<Fragment> mFragList = new ArrayList<Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSectionAdapter = new SectionAdapter(getSupportFragmentManager());
-
         // Set up the ViewPager with the section adapter.
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager(mViewPager);
+        mSectionAdapter = new SectionAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mSectionAdapter);
 
         mBottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -80,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        setupViewPager(mViewPager);
-
-
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        SectionAdapter adapter = new SectionAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MainFragment(), "Main");
-        adapter.addFragment(new ResourcesFragment(), "Resources");
-        adapter.addFragment(new SettingsFragment(), "Settings");
-        viewPager.setAdapter(adapter);
+    public void onStickyClicked(int data){
+
+            InnerResourceFrag innerFrag = InnerResourceFrag.newInstance(data);
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, innerFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
+
+            mSectionAdapter.notifyDataSetChanged();
     }
 
 }
