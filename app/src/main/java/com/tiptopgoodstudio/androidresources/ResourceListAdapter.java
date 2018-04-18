@@ -11,6 +11,9 @@ package com.tiptopgoodstudio.androidresources;
  * Changed the String array to List<Resource> to hold the mock Resource items
  * Updated the onBindViewHolder method to display all data from the Resource item list
  * Added an onClickListener to the resource item
+ *
+ * The following added by Divya on 4/18/2018
+ * Added code to bind resource icon drawables
  */
 
 import android.content.Context;
@@ -18,6 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
@@ -60,6 +64,19 @@ public class ResourceListAdapter
 
         holder.mResourceDescription.setText(currentResource.getResourceDescription());
 
+        String resourceFormat = currentResource.getResourceFormat();
+        int resourceId = R.drawable.resource_url_icon;
+        if(resourceFormat.equalsIgnoreCase("pdf")) {
+            resourceId = R.drawable.resource_pdf_icon;
+        } else if(resourceFormat.equalsIgnoreCase("video")) {
+            resourceId = R.drawable.resource_video_icon;
+        } else if(resourceFormat.equalsIgnoreCase("image")) {
+            resourceId = R.drawable.resource_image_icon;
+        }
+        holder.mResourceIcon.setImageResource(resourceId);
+        holder.mResourceIcon.setContentDescription(resourceFormat);
+
+
     }
 
     @Override
@@ -80,11 +97,14 @@ public class ResourceListAdapter
 
         public final TextView mResourceDescription;
         public final TextView mResourceUrl;
+        public final ImageView mResourceIcon;
+
 
         public ResourceListAdapterViewHolder(View itemView) {
             super(itemView);
             mResourceDescription = (TextView) itemView.findViewById(R.id.tv_resource_description);
             mResourceUrl = (TextView) itemView.findViewById(R.id.tv_resource_url);
+            mResourceIcon = (ImageView) itemView.findViewById(R.id.resource_icon);
             itemView.setOnClickListener(this);
         }
 

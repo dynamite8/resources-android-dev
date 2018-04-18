@@ -71,7 +71,8 @@ public class InnerResourceFrag extends Fragment implements ResourceListAdapter.R
 
         for(int i = 1; i <= 10; i++) {
             Resource currentResource = new Resource("Fake Resource " + (i % 4),
-                    "Fake Resource " + i,stickyOption);
+                    "Fake Resource " + i,stickyOption,
+                    "url");
             resourcesList.add(currentResource);
         }
 

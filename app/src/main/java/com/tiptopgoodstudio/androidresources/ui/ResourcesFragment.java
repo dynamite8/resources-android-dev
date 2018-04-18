@@ -99,13 +99,53 @@ public class ResourcesFragment extends Fragment
     private List<Resource> generateMockData() {
         List<Resource> resourcesList = new ArrayList<Resource>();
 
-        for(int i = 1; i <= 20; i++) {
-            Resource currentResource = new Resource("Topic " + (i % 4),
-                                                    "Title " + i,
-                                                     "https://www.google.com/search?q=Title+"+i);
-            resourcesList.add(currentResource);
-            Log.d(TAG, "Added resource with title " + i);
-        }
+        Resource currentResource = new Resource("App Architecture",
+                "Architecture Components",
+                "https://www.youtube.com/watch?v=vOJCrbr144o",
+                "video");
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "Android Developer Guide on Architecture Components",
+                "https://developer.android.com/topic/libraries/architecture/index.html",
+                "url");
+
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "Android Room with a View Codelab",
+                "https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0",
+                "url");
+
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "Android by example : MVVM +Data Binding\n",
+                "https://medium.com/@husayn.hakeem/android-by-example-mvvm-data-binding-introduction-part-1-6a7a5f388bf7\n",
+                "url");
+
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "MVVM using the Android Architecture Components",
+                "https://i0.wp.com/riggaroo.co.za/wp-content/uploads/2017/05/MVVM-using-the-new-android-architecture-components-1.png?ssl=1",
+                "image");
+
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "MVI Architecture for Android",
+                "https://youtu.be/A2xyPZyoFUo",
+                "video");
+
+        resourcesList.add(currentResource);
+
+        currentResource = new Resource("App Architecture",
+                "Android by example : MVVM +Data Binding\n",
+                "https://medium.com/@husayn.hakeem/android-by-example-mvvm-data-binding-introduction-part-1-6a7a5f388bf7\n",
+                "video");
+
+        resourcesList.add(currentResource);
 
         return resourcesList;
 
