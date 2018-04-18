@@ -7,23 +7,34 @@ import android.os.AsyncTask;
 
 import com.tiptopgoodstudio.androidresources.db.AppDatabase;
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
+import com.tiptopgoodstudio.androidresources.db.dao.TopicDao;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 
 import java.util.List;
 
 public class ResourceRepository {
 
     private ResourceDao mResourceDao;
+    private TopicDao mTopicDao;
 
     /**
      * Constructor
-     *
      * @param application
      */
     public ResourceRepository(Application application) {
 
         AppDatabase db = AppDatabase.getDatabase(application);
         mResourceDao = db.resourceDao();
+        mTopicDao = db.topicDao();
+    }
+
+    /**
+     * method returns all topic records in Room db topic_table
+     * @return List<Topic>
+     */
+    public List<Topic> getTopicsList() {
+        return mTopicDao.getAllTopicsList();
     }
 
     /**
@@ -77,5 +88,7 @@ public class ResourceRepository {
             return null;
         }
     }
+
+
 
 }

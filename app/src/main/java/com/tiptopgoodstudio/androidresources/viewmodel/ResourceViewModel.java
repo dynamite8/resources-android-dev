@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 
 import com.tiptopgoodstudio.androidresources.ResourceRepository;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 
 import java.util.List;
 
@@ -16,13 +17,23 @@ public class ResourceViewModel extends AndroidViewModel {
 
     private ResourceRepository mResourceRepository;
     private List<Resource> mResources;
-
+    private List<Topic> mTopics;
 
     public ResourceViewModel(@NonNull Application application) {
         super(application);
         mResourceRepository = new ResourceRepository(application);
-        //upon creation, ViewModel caches list of all resources not filtered by topic
+        //upon creation, ViewModel caches list of all resources not
+        // filtered by topic and all topics alphabetically
         mResources = mResourceRepository.getAllResourcesList();
+        mTopics = mResourceRepository.getTopicsList();
+    }
+
+    /**
+     * returns list of topics stored in ViewModel member variable
+     * @return List<Topic>
+     */
+    public List<Topic> getTopicsList() {
+        return mTopics;
     }
 
     /**

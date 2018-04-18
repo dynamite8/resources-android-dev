@@ -6,15 +6,18 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
+import com.tiptopgoodstudio.androidresources.db.dao.TopicDao;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 
-@Database(entities = {Resource.class}, version = 1)
+@Database(entities = {Resource.class, Topic.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String RESOURCE_DATABASE = "resource_database";
     private static AppDatabase INSTANCE;
 
     public abstract ResourceDao resourceDao();
+    public abstract TopicDao topicDao();
 
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
