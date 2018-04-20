@@ -6,7 +6,7 @@
   Android Dev Resources
 
   This page is the layout for an item. A list of such items is displayed as a recycler view in
-  fragment_resources.xml
+  resources_list.xml
 
   Added the resource URL hidden TextView (by Divya on 3/24/2018)
  -->

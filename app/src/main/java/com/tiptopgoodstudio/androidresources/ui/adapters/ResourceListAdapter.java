@@ -1,4 +1,4 @@
-package com.tiptopgoodstudio.androidresources;
+package com.tiptopgoodstudio.androidresources.ui.adapters;
 
 /**
  * Created by Divya on 3/3/2018.
@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.tiptopgoodstudio.androidresources.R;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
 
 import java.util.List;

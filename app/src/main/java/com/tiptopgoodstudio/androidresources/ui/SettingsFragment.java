@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tiptopgoodstudio.androidresources.R;
-import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
 
 public class SettingsFragment extends Fragment {
 
-    public static final String TAG = HomeFragment.class.getSimpleName();
+    public static final String TAG = SettingsFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

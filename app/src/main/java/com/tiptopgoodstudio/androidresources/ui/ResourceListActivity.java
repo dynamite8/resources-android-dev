@@ -4,19 +4,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tiptopgoodstudio.androidresources.R;
-import com.tiptopgoodstudio.androidresources.ResourceListAdapter;
+import com.tiptopgoodstudio.androidresources.ui.adapters.ResourceListAdapter;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
-import com.tiptopgoodstudio.androidresources.ui.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +32,19 @@ import java.util.List;
  *
  * A simple {@link Fragment} subclass.
  *
+ * Converting back to ResourceListActivity to keep it simple for version 1 on 04/19/2018 by Divya
+ *
  */
-public class ResourcesFragment extends Fragment
+public class ResourceListActivity extends AppCompatActivity
                                 implements ResourceListAdapter.ResourceClickListener {
 
-    public static final String TAG = HomeFragment.class.getSimpleName();
+    // A TAG to denote the classname for Logging purposes
+    public static final String TAG = ResourceListActivity.class.getSimpleName();
 
     // A private RecyclerView variable called mRecyclerView
     private RecyclerView mRecyclerView;
 
-    // A com.tiptopgoodstudio.androidresources.ResourceListAdapter variable called mResourceListAdapter
+    // A com.tiptopgoodstudio.androidresources.ui.adapters.ResourceListAdapter variable called mResourceListAdapter
     private ResourceListAdapter mResourceListAdapter;
 
     // A progress bar before displaying results
@@ -53,37 +54,66 @@ public class ResourcesFragment extends Fragment
     private TextView mErrorMessageDisplay;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_resources, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_resource_item);
+        super.onCreate(savedInstanceState);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        Log.d(TAG, "In onCreate()");
+
+        setContentView(R.layout.resources_list);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_resource_item);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,
+                                                                    LinearLayoutManager.VERTICAL,
+                                                                    false);
 
         mRecyclerView.setLayoutManager(layoutManager);
 
         // Use setHasFixedSize(true) to designate that all items in the list will have the same size
         mRecyclerView.setHasFixedSize(true);
 
-        // Assign a new com.tiptopgoodstudio.androidresources.ResourceListAdapter object to our member variable
+        // Assign a new com.tiptopgoodstudio.androidresources.ui.Adapters.ResourceListAdapter object to our member variable
         mResourceListAdapter = new ResourceListAdapter(this);
 
         mRecyclerView.setAdapter(mResourceListAdapter);
 
         // This progress bar is displayed while loading the results
-        mLoadingIndicator = (ProgressBar) view.findViewById(R.id.pb_loading_indicator);
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
 
         // This TextView is used to display errors and will be hidden if there are no errors
-        mErrorMessageDisplay = (TextView) view.findViewById(R.id.tv_error_message_display);
+        mErrorMessageDisplay = (TextView) findViewById(R.id.tv_error_message_display);
 
-        //Now load the resources data
-        loadResourcesData();
+        // The getIntent method retrieves the Intent that started this Activity
+        Intent intentFromParent = getIntent();
 
-        return view;
+        // If this Intent has the extra we need, get the resource topic
+        if(intentFromParent.hasExtra(Intent.EXTRA_TEXT)) {
+            String resourceTopic = intentFromParent.getStringExtra(Intent.EXTRA_TEXT);
+
+            //Get the list of resources for this topic
+            getResourcesByTopic(resourceTopic);
+
+            //Set the title of the activity to this resource Topic
+            setTitle(resourceTopic);
+
+        } else {
+            // Get the list of all resources
+            getAllResources();
+        }
+
     }
 
-    private void loadResourcesData(){
+    private void getResourcesByTopic(String resourceTopic) {
+        Log.d(TAG, "We need to get resources for "+ resourceTopic);
+
+        getAllResources();
+    }
+
+
+    private void getAllResources(){
+
+        Log.d(TAG, "In getAllResources()");
 
         mResourceListAdapter.setResourceData(generateMockData());
 
@@ -97,6 +127,9 @@ public class ResourcesFragment extends Fragment
      *
      */
     private List<Resource> generateMockData() {
+
+        Log.d(TAG, "In generateMockData()");
+
         List<Resource> resourcesList = new ArrayList<Resource>();
 
         Resource currentResource = new Resource("App Architecture",
@@ -157,6 +190,9 @@ public class ResourcesFragment extends Fragment
      * hide the error message.
      */
     private void showResourceListView() {
+
+        Log.d(TAG, "In showResourceListView()");
+
         // First, make the error invisible
         mErrorMessageDisplay.setVisibility(View.INVISIBLE);
 
@@ -165,10 +201,12 @@ public class ResourcesFragment extends Fragment
     }
 
     /**
-     * This method will make the error message visible and hide the weather
-     * View.
+     * This method will make the error message visible and hide the resource list view
      */
     private void showErrorMessage() {
+
+        Log.d(TAG, "In showErrorMessage()");
+
         // First, hide the currently visible data
         mRecyclerView.setVisibility(View.INVISIBLE);
 
@@ -185,15 +223,21 @@ public class ResourcesFragment extends Fragment
      */
     @Override
     public void onResourceItemClick(String url) {
+
+        Log.d(TAG, "In onResourceItemClick()");
+
         openWebPage(url);
     }
 
     public void openWebPage(String url) {
+
+        Log.d(TAG, "In openWebPage()");
+
         Uri webpage = Uri.parse(url);
 
         Intent webpageIntent = new Intent(Intent.ACTION_VIEW, webpage);
 
-        if (webpageIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (webpageIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(webpageIntent);
         }
     }

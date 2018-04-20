@@ -3,32 +3,24 @@ package com.tiptopgoodstudio.androidresources.ui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tiptopgoodstudio.androidresources.R;
-import com.tiptopgoodstudio.androidresources.ResourceListAdapter;
 
 /*
 *  Added on 04/13/2018 by Olga Agafonova.
 *  Creates a custom view that contains an ImageView and a TextView
 *  (the TextView is centered on top of ImageView)
+*
+*  Added a method to retrieve the Sticky Note Title on 4/19/2018 by Divya
 * */
 class StickyNoteView extends RelativeLayout
 {
-    private static final String TAG = HomeFragment.class.getSimpleName();
+    private static final String TAG = StickyNoteView.class.getSimpleName();
 
     private Drawable mStickyDrawable;
     private ImageView mStickyImageView;
@@ -51,6 +43,10 @@ class StickyNoteView extends RelativeLayout
 
     public ImageView getStickyImageView() {
         return mStickyImageView;
+    }
+
+    public String getStickyText() {
+        return mStickyString;
     }
 
     /*
