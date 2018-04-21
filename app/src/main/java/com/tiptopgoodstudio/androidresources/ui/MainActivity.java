@@ -1,6 +1,7 @@
 package com.tiptopgoodstudio.androidresources.ui;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.action_toolbar_main);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorMenuItem));
         setSupportActionBar(toolbar);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_stickynotes);

@@ -26,12 +26,15 @@
     <!--Strings used in activity_settings.xml (Added by Olga on 4/21/2018) -->
     <string name="contributors">Contributors:</string>
     <string name="rights">© 2018 All Rights Reserved.</string>
-    <string name="contributorOne">Jenny Chang Ho</string>
-    <string name="contributorTwo">Janice Wildrick</string>
-    <string name="contributorThree">Olga Agafonova</string>
-    <string name="contributorFour">Ijeoma Ezeonyebuchi</string>
-    <string name="contributorFive">Divya Ambadipudi</string>
-    <string name="contributorSix">Somayah Alharbi</string>
-    <string name="contributorSeven">Blithe Brandon</string>
+    <string name="contributorList">
+        \n <!--do not remove -->
+        Jenny Chang Ho \n
+        Janice Wildrick \n
+        Olga Agafonova \n
+        Ijeoma Ezeonyebuchi \n
+        Divya Ambadipudi \n
+        Somayah Alharbi \n
+        Blithe Brandon \n
+    </string>
 
 </resources>
