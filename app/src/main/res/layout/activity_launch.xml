@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Created by Divya on 4/20/2018.
+  For GrowWithGoogleChallengeScholarship Women In Technology Learning Project
+  Android Dev Resources
+
+  This page displays a TextView and a Progress Bar and is used for downloading Firebase data
+  before calling MainActivity
+ -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list_background_color">
+
+    <TextView
+        android:id="@+id/tv_loading"
+        style="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
+        android:layout_gravity="center"
+        android:text="@string/loading_message" />
+
+    <ProgressBar
+        android:id="@+id/pb_loading_indicator"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:layout_gravity="center" />
+
+</FrameLayout>

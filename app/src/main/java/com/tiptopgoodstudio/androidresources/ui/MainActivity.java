@@ -37,6 +37,8 @@ import java.util.List;
 /*
 * Updated on 4/20/2018 by Olga Agafonova
 * Added a Grid Layout that displays a RecyclerView (which displays the sticky notes)
+*
+* Moved the firebase code from MainActivity to the Repository by Divya on 4/20/2018
 * */
 
 public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter.ResourceClickListener {
@@ -46,11 +48,6 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
     private ProgressBar mLoadingIndicator;
     private TextView mErrorMessage;
     private List<Topic> topicList;
-
-    // Firebase references
-    private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mResourcesDatabaseReference;
-    private ChildEventListener mResourcesEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,59 +72,7 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
 
         topicList = new ArrayList<Topic>();
 
-        // Firebase
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mResourcesDatabaseReference = mFirebaseDatabase.getReference().child("resources");
-        mResourcesEventListener = new ChildEventListener() {
-
-            // method is called when first load and also on new resources being added
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                // get the value at point in time to our matching entity
-                // data is deserialized into Resources class
-                Resources resource = dataSnapshot.getValue(Resources.class);
-                System.out.println(resource.getResourceURL());
-
-                Topic topic = new Topic(resource.getResourceTopic());
-                //Log.d("TOPICS", topic.getTopicName());
-                topicList.add(topic);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mResourcesDatabaseReference.addChildEventListener(mResourcesEventListener);
-
-        mResourcesDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            //when we are done adding items from db, populate the RecyclerView
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                mSitckyNoteAdapter.setTopicData(topicList);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        mSitckyNoteAdapter.setTopicData(topicList); // TODO - Replace this with data from ViewModel
 
     }
 
