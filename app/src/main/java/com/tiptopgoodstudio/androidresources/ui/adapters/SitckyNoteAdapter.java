@@ -80,7 +80,8 @@ public class SitckyNoteAdapter extends RecyclerView.Adapter<SitckyNoteAdapter.Si
             super(itemView);
             mTopicDescription = (TextView) itemView.findViewById(R.id.stickyNoteText);
             mStickyIcon = (ImageView) itemView.findViewById(R.id.stickyNote);
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
+            mStickyIcon.setOnClickListener(this);
         }
 
         @Override

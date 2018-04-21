@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
     @Override
     public void onTopicItemClick(String data) {
 
-        Log.d("TEST", "In onTopicItemClick()");
         onStickyClicked(data);
 
     }
