@@ -13,12 +13,10 @@
   Converting it back to resources_list.xml for version 1 on 04/19/2018 by Divya
  -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="56dp"
-    android:background="@color/list_background_color"
-    android:orientation="vertical">
+    android:background="@color/list_background_color">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_resource_item"
@@ -27,10 +25,11 @@
 
     <TextView
         android:id="@+id/tv_error_message_display"
-        style="@style/TextAppearance.Compat.Notification.Info"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding"
+        android:layout_gravity="center"
         android:text="@string/error_message"
         android:visibility="invisible" />
 
@@ -41,4 +40,4 @@
         android:layout_gravity="center"
         android:visibility="invisible" />
 
-</LinearLayout>
+</FrameLayout>
