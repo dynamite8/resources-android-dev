@@ -4,22 +4,43 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.tiptopgoodstudio.androidresources.R;
+import com.tiptopgoodstudio.androidresources.db.entity.Resource;
 import com.tiptopgoodstudio.androidresources.db.entity.Resources;
+import com.tiptopgoodstudio.androidresources.db.entity.Topic;
+import com.tiptopgoodstudio.androidresources.ui.adapters.SitckyNoteAdapter;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    private StickyNoteView mStickyView1;
-    private StickyNoteView mStickyView2;
-    private StickyNoteView mStickyView3;
-    private StickyNoteView mStickyView4;
+
+/*
+* Updated on 4/20/2018 by Olga Agafonova
+* Added a Grid Layout that displays a RecyclerView (which displays the sticky notes)
+* */
+
+public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter.ResourceClickListener {
+
+    private RecyclerView mRecyclerView;
+    private SitckyNoteAdapter mSitckyNoteAdapter;
+    private ProgressBar mLoadingIndicator;
+    private TextView mErrorMessage;
+    private List<Topic> topicList;
 
     // Firebase references
     private FirebaseDatabase mFirebaseDatabase;
@@ -32,12 +53,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        mStickyView1 = findViewById(R.id.customView1);
-        mStickyView2 = findViewById(R.id.customView2);
-        mStickyView3 = findViewById(R.id.customView3);
-        mStickyView4 = findViewById(R.id.customView4);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_stickynotes);
+        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
+        mErrorMessage = (TextView) findViewById(R.id.main_error_message_display);
 
-        setupStickyViews();
+        GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mSitckyNoteAdapter = new SitckyNoteAdapter(this);
+        mRecyclerView.setAdapter(mSitckyNoteAdapter);
+
+        topicList = new ArrayList<Topic>();
 
         // Firebase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -51,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 // data is deserialized into Resources class
                 Resources resource = dataSnapshot.getValue(Resources.class);
                 System.out.println(resource.getResourceURL());
+
+                Topic topic = new Topic(resource.getResourceTopic());
+                //Log.d("TOPICS", topic.getTopicName());
+                topicList.add(topic);
             }
 
             @Override
@@ -75,54 +105,20 @@ public class MainActivity extends AppCompatActivity {
         };
         mResourcesDatabaseReference.addChildEventListener(mResourcesEventListener);
 
-    }
+        mResourcesDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
-     /*
-     *  Currently this method uses hardcoded StickyViews, but these sticky views need to dynamically
-     *  generated based on number of topics. Then there would be one method to assign the onClicklistener
-     *  to all the dynamically generated custom views. RecyclerView could be used to dynamically generate
-     *  the sticky views as well as assign the onClickListeners
-     *
-     * TODO replace selectedResource with a real value from the back-end
-     * */
-    private void setupStickyViews() {
-        try {
+            //when we are done adding items from db, populate the RecyclerView
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                mSitckyNoteAdapter.setTopicData(topicList);
+            }
 
-            mStickyView1.getStickyImageView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    onStickyClicked(mStickyView1.getStickyText());
-                }
-            });
+            }
+        });
 
-            mStickyView2.getStickyImageView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    onStickyClicked(mStickyView2.getStickyText());
-                }
-            });
-
-            mStickyView3.getStickyImageView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    onStickyClicked(mStickyView3.getStickyText());
-                }
-            });
-
-            mStickyView4.getStickyImageView().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    onStickyClicked(mStickyView4.getStickyText());
-                }
-            });
-        }
-        catch(Exception e) {
-            //Log.d(TAG, e.toString());
-        }
     }
 
     /**
@@ -138,6 +134,14 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT, topic);
 
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onTopicItemClick(String data) {
+
+        Log.d("TEST", "In onTopicItemClick()");
+        onStickyClicked(data);
 
     }
 
