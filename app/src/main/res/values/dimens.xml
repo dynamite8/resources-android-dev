@@ -15,8 +15,8 @@
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
     <dimen name="padding">16dp</dimen>
 
-    <dimen name="stickyNoteWidth">200dp</dimen>
-    <dimen name="stickyNoteHeight">200dp</dimen>
+    <dimen name="stickyNoteWidth">300dp</dimen>
+    <dimen name="stickyNoteHeight">300dp</dimen>
 
     <dimen name="stickyMargin">16dp</dimen>
 
@@ -29,5 +29,6 @@
     <!-- Dimensions used in resources_list.xml -->
     <dimen name="progress_bar_size">42dp</dimen>
 
+    <dimen name="contributor_height">32dp</dimen>
 
 </resources>

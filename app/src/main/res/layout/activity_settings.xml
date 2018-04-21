@@ -1,0 +1,159 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSettingsBackground"
+    tools:context="com.tiptopgoodstudio.androidresources.ui.SettingsActivity">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guidelineHRights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+
+    <TextView
+        android:id="@+id/contributors"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributors"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH">
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/contributorOne"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/contributorOne"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorMenuItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH" />
+
+    <TextView
+        android:id="@+id/contributorTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributorTwo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorMenuItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributorOne" />
+
+    <TextView
+    android:id="@+id/contributorThree"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/contributor_height"
+    android:layout_margin="@dimen/stickyMargin"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:text="@string/contributorThree"
+    android:textColor="@color/colorMenuItem"
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/contributorTwo" />
+
+    <TextView
+        android:id="@+id/contributorFour"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributorFour"
+        android:textColor="@color/colorMenuItem"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributorThree" />
+
+    <TextView
+        android:id="@+id/contributorFive"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributorFive"
+        android:textColor="@color/colorMenuItem"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributorFour" />
+
+    <TextView
+        android:id="@+id/contributorSix"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributorSix"
+        android:textColor="@color/colorMenuItem"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributorFive" />
+
+    <TextView
+        android:id="@+id/contributorSeven"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/contributorSeven"
+        android:textColor="@color/colorMenuItem"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributorSix" />
+
+    <TextView
+        android:id="@+id/allrightsreserved"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/contributor_height"
+        android:layout_margin="@dimen/stickyMargin"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/rights"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorMenuItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHRights" />
+
+</android.support.constraint.ConstraintLayout>

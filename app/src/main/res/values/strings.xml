@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Android Resources</string>
 
-    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <!-- Strings usedactionbar_menu.xmliew.xml (Added by Olga on 3/6/2018) -->
     <string name="home_menu_item">Home</string>
 
-    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <!-- Strings usedactionbar_menu.xmliew.xml (Added by Olga on 3/6/2018) -->
     <string name="resources_menu_item">Resources</string>
 
-    <!-- Strings used in drawer_view.xml (Added by Olga on 3/6/2018) -->
+    <!-- Strings usedactionbar_menu.xmliew.xml (Added by Olga on 3/6/2018) -->
     <string name="settings_menu_item">Settings</string>
 
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
@@ -23,7 +23,15 @@
 
     <string name="error_message">Some error occured. Please try again!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-
+    <!--Strings used in activity_settings.xml (Added by Olga on 4/21/2018) -->
+    <string name="contributors">Contributors:</string>
+    <string name="rights">© 2018 All Rights Reserved.</string>
+    <string name="contributorOne">Jenny Chang Ho</string>
+    <string name="contributorTwo">Janice Wildrick</string>
+    <string name="contributorThree">Olga Agafonova</string>
+    <string name="contributorFour">Ijeoma Ezeonyebuchi</string>
+    <string name="contributorFive">Divya Ambadipudi</string>
+    <string name="contributorSix">Somayah Alharbi</string>
+    <string name="contributorSeven">Blithe Brandon</string>
 
 </resources>
