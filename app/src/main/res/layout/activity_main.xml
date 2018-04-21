@@ -17,6 +17,13 @@
     android:orientation="vertical"
     tools:context="com.tiptopgoodstudio.androidresources.ui.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/action_toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_stickynotes"
         android:layout_width="match_parent"

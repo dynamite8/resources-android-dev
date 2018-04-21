@@ -12,6 +12,7 @@
     <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
     <color name="list_background_color">#AAAAAA</color>
 
-    <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
+    <!-- Colors used in SettingsActivity (Added by Olga on 4/21/2018) -->
+    <color name="colorSettingsBackground">#010d4e</color>
 
 </resources>
