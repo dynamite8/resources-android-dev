@@ -34,9 +34,10 @@
 
     <TextView
         android:id="@+id/main_error_message_display"
-        style="@style/TextAppearance.Compat.Notification.Info"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:padding="@dimen/padding"
         android:text="@string/error_message"
         android:visibility="invisible" />

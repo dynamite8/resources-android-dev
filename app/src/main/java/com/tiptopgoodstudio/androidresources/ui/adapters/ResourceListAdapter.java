@@ -67,17 +67,21 @@ public class ResourceListAdapter
 
         String resourceFormat = currentResource.getResourceFormat();
         int resourceId = R.drawable.resource_url_icon;
-        if(resourceFormat.equalsIgnoreCase("pdf")) {
-            resourceId = R.drawable.resource_pdf_icon;
-        } else if(resourceFormat.equalsIgnoreCase("video")) {
-            resourceId = R.drawable.resource_video_icon;
-        } else if(resourceFormat.equalsIgnoreCase("image")) {
-            resourceId = R.drawable.resource_image_icon;
+        if(resourceFormat == null) {
+            //Default it to url
+            resourceFormat = "url";
+        }
+        else {
+            if(resourceFormat.equalsIgnoreCase("pdf")) {
+                resourceId = R.drawable.resource_pdf_icon;
+            } else if(resourceFormat.equalsIgnoreCase("video")) {
+                resourceId = R.drawable.resource_video_icon;
+            } else if(resourceFormat.equalsIgnoreCase("image")) {
+                resourceId = R.drawable.resource_image_icon;
+            }
         }
         holder.mResourceIcon.setImageResource(resourceId);
         holder.mResourceIcon.setContentDescription(resourceFormat);
-
-
     }
 
     @Override

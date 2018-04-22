@@ -1,5 +1,6 @@
 package com.tiptopgoodstudio.androidresources.ui;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,8 +16,8 @@ import android.widget.TextView;
 import com.tiptopgoodstudio.androidresources.R;
 import com.tiptopgoodstudio.androidresources.ui.adapters.ResourceListAdapter;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
+import com.tiptopgoodstudio.androidresources.viewmodel.ResourceViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,12 +35,14 @@ import java.util.List;
  *
  * Converting back to ResourceListActivity to keep it simple for version 1 on 04/19/2018 by Divya
  *
+ * Added a method to get data from the ViewModel and removed the mock data on 04/21/2018 by Divya
+ *
  */
 public class ResourceListActivity extends AppCompatActivity
-                                implements ResourceListAdapter.ResourceClickListener {
+        implements ResourceListAdapter.ResourceClickListener {
 
     // A TAG to denote the classname for Logging purposes
-    public static final String TAG = ResourceListActivity.class.getSimpleName();
+    private static final String TAG = ResourceListActivity.class.getSimpleName();
 
     // A private RecyclerView variable called mRecyclerView
     private RecyclerView mRecyclerView;
@@ -53,6 +56,9 @@ public class ResourceListActivity extends AppCompatActivity
     // An error message to display errors
     private TextView mErrorMessageDisplay;
 
+    // A variable to store the resourceTopic passed through an Intent
+    private String resourceTopic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,8 +71,8 @@ public class ResourceListActivity extends AppCompatActivity
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_resource_item);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,
-                                                                    LinearLayoutManager.VERTICAL,
-                                                                    false);
+                LinearLayoutManager.VERTICAL,
+                false);
 
         mRecyclerView.setLayoutManager(layoutManager);
 
@@ -87,103 +93,68 @@ public class ResourceListActivity extends AppCompatActivity
         // The getIntent method retrieves the Intent that started this Activity
         Intent intentFromParent = getIntent();
 
-        // If this Intent has the extra we need, get the resource topic
         if(intentFromParent.hasExtra(Intent.EXTRA_TEXT)) {
-            String resourceTopic = intentFromParent.getStringExtra(Intent.EXTRA_TEXT);
+            resourceTopic = intentFromParent.getStringExtra(Intent.EXTRA_TEXT);
 
-            //Get the list of resources for this topic
-            getResourcesByTopic(resourceTopic);
-
-            //Set the title of the activity to this resource Topic
+            // Set the title of the activity to this resource Topic
             setTitle(resourceTopic);
-
-        } else {
-            // Get the list of all resources
-            getAllResources();
         }
 
-    }
-
-    private void getResourcesByTopic(String resourceTopic) {
-        Log.d(TAG, "We need to get resources for "+ resourceTopic);
-
-        getAllResources();
-    }
-
-
-    private void getAllResources(){
-
-        Log.d(TAG, "In getAllResources()");
-
-        mResourceListAdapter.setResourceData(generateMockData());
+        // Call the ViewModel methods to retrieve data
+        loadDataFromViewModel();
 
     }
 
     /**
-     * This method will generate the mock data for now
-     * TODO - To be replaced by the data we get from ViewModel
+     * This method retrieves data from the ViewModel
      *
-     * Added by Divya on 3/24/2018.
+     * Added by Divya on 4/20/2018.
      *
      */
-    private List<Resource> generateMockData() {
 
-        Log.d(TAG, "In generateMockData()");
+    private void loadDataFromViewModel(){
 
-        List<Resource> resourcesList = new ArrayList<Resource>();
+        Log.d(TAG, "In loadDataFromViewModel()");
 
-        Resource currentResource = new Resource("App Architecture",
-                "Architecture Components",
-                "https://www.youtube.com/watch?v=vOJCrbr144o",
-                "video");
-        resourcesList.add(currentResource);
+        try {
 
-        currentResource = new Resource("App Architecture",
-                "Android Developer Guide on Architecture Components",
-                "https://developer.android.com/topic/libraries/architecture/index.html",
-                "url");
+            mLoadingIndicator.setVisibility(View.VISIBLE);
 
-        resourcesList.add(currentResource);
+            ResourceViewModel model = ViewModelProviders.of(this).get(ResourceViewModel.class);
 
-        currentResource = new Resource("App Architecture",
-                "Android Room with a View Codelab",
-                "https://codelabs.developers.google.com/codelabs/android-room-with-a-view/#0",
-                "url");
+            if(resourceTopic != null && !resourceTopic.equals("")) {
+                model.getTopicResources(resourceTopic).observe(this, resourceList -> {
+                    //Update UI
+                    updateResourceListInUI(resourceList);
+                });
+            } else {
+                model.getAllResources().observe(this, resourceList -> {
+                    //Update UI
+                    updateResourceListInUI(resourceList);
+                });
+            }
 
-        resourcesList.add(currentResource);
+            showResourceListView();
 
-        currentResource = new Resource("App Architecture",
-                "Android by example : MVVM +Data Binding\n",
-                "https://medium.com/@husayn.hakeem/android-by-example-mvvm-data-binding-introduction-part-1-6a7a5f388bf7\n",
-                "url");
-
-        resourcesList.add(currentResource);
-
-        currentResource = new Resource("App Architecture",
-                "MVVM using the Android Architecture Components",
-                "https://i0.wp.com/riggaroo.co.za/wp-content/uploads/2017/05/MVVM-using-the-new-android-architecture-components-1.png?ssl=1",
-                "image");
-
-        resourcesList.add(currentResource);
-
-        currentResource = new Resource("App Architecture",
-                "MVI Architecture for Android",
-                "https://youtu.be/A2xyPZyoFUo",
-                "video");
-
-        resourcesList.add(currentResource);
-
-        currentResource = new Resource("App Architecture",
-                "Android by example : MVVM +Data Binding\n",
-                "https://medium.com/@husayn.hakeem/android-by-example-mvvm-data-binding-introduction-part-1-6a7a5f388bf7\n",
-                "video");
-
-        resourcesList.add(currentResource);
-
-        return resourcesList;
+        } catch(Exception e) {
+            e.printStackTrace();
+            showErrorMessage();
+        } finally {
+            mLoadingIndicator.setVisibility(View.INVISIBLE);
+        }
 
     }
 
+    /**
+     * This method sends the data to RecyclerView Adapter
+     * @param resourceList
+     *
+     * Added by Divya on 4/20/2018.
+     *
+     */
+    private void updateResourceListInUI(List<Resource> resourceList) {
+        mResourceListAdapter.setResourceData(resourceList);
+    }
 
     /**
      * This method will make the resource list visible and
@@ -214,10 +185,8 @@ public class ResourceListActivity extends AppCompatActivity
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
-
     /**
      * This method will be called when the resource item is clicked
-     * This method creates an Implicit Intent to open the url in a browser app
      *
      * Added by Divya on 3/24/2018.
      */
@@ -229,6 +198,11 @@ public class ResourceListActivity extends AppCompatActivity
         openWebPage(url);
     }
 
+    /**
+     * This method creates an Implicit Intent to open the url in an appropriate app
+     *
+     * Added by Divya on 3/24/2018.
+     */
     public void openWebPage(String url) {
 
         Log.d(TAG, "In openWebPage()");
