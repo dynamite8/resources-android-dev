@@ -23,6 +23,12 @@ public class Resource {
     private String resourceUrl;
     private String resourceFormat;
 
+    // Adding an empty constructor in order to work with Firebase importing data into this POJO
+    // By Divya on 4/24/2018
+    public Resource() {
+
+    }
+
     public Resource(String resourceTopic, String resourceDescription, String resourceUrl, String resourceFormat) {
         this.resourceTopic = resourceTopic;
         this.resourceDescription = resourceDescription;
