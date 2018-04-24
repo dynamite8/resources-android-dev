@@ -2,15 +2,12 @@ package com.tiptopgoodstudio.androidresources.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,22 +15,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
 import com.tiptopgoodstudio.androidresources.R;
-import com.tiptopgoodstudio.androidresources.db.entity.Resource;
-import com.tiptopgoodstudio.androidresources.db.entity.Resources;
-import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 import com.tiptopgoodstudio.androidresources.ui.adapters.SitckyNoteAdapter;
 import com.tiptopgoodstudio.androidresources.viewmodel.TopicViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 /*
