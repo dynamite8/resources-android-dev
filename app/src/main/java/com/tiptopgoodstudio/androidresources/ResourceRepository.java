@@ -12,7 +12,6 @@ import com.tiptopgoodstudio.androidresources.db.AppDatabase;
 import com.tiptopgoodstudio.androidresources.db.dao.ResourceDao;
 import com.tiptopgoodstudio.androidresources.db.dao.TopicDao;
 import com.tiptopgoodstudio.androidresources.db.entity.Resource;
-import com.tiptopgoodstudio.androidresources.db.entity.Resources;
 import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class ResourceRepository {
     private ChildEventListener mResourcesEventListener;
 
     /**
-     * Constructor
+     *
      * @param application
      */
     public ResourceRepository(Application application) {
@@ -184,20 +183,15 @@ public class ResourceRepository {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 // get the value at point in time to our matching entity
-                // data is deserialized into Resources class
-                Resources resources = dataSnapshot.getValue(Resources.class);
-                System.out.println(resources.getResourceURL());
+                // data is deserialized into Resource class
+                Resource resource = dataSnapshot.getValue(Resource.class);
 
                 // Create a new Topic object and insert it into the Topic table
                 // When a topic that already exists is inserted again, it is ignored
-                Topic topic = new Topic(resources.getResourceTopic());
+                Topic topic = new Topic(resource.getResourceTopic());
                 insertSingleTopic(topic);
 
-                //Create a new Resource object and insert it into the Resource table
-                Resource resource = new Resource(resources.getResourceTopic(),
-                                                resources.getDescription(),
-                                                resources.getResourceURL(),
-                                                resources.getFormat());
+                //Insert it into the Resource table
                 insertSingleResource(resource);
             }
 
