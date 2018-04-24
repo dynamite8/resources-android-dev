@@ -38,7 +38,8 @@
                 android:layout_width="@dimen/stickyNoteWidth"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/stickyNoteTextColor"/>
 
         </RelativeLayout>
 

@@ -34,8 +34,7 @@
         android:layout_height="@dimen/contributor_height"
         android:layout_marginTop="16dp"
         android:text="@string/contributors"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/colorAccent"
+        style="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +58,7 @@
         android:layout_gravity="center_vertical"
         android:text="@string/contributorList"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorMenuItem"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contributors"
         app:layout_constraintVertical_bias="0.65" />
@@ -73,7 +72,7 @@
         android:layout_marginStart="8dp"
         android:text="@string/rights"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/colorMenuItem"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHRights" />

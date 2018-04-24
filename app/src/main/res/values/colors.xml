@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#1976d2</color>
+    <color name="colorPrimaryDark">#004ba0</color>
+    <color name="colorPrimaryLight">#63a4ff</color>
+    <color name="colorAccent">#fbc02d</color>
     <color name="colorMenuItem">#FFFFFF</color>
 
     <!-- Colors used in resource_item.xml (Added by Divya on 3/3/2018) -->
@@ -13,6 +14,8 @@
     <color name="list_background_color">#AAAAAA</color>
 
     <!-- Colors used in SettingsActivity (Added by Olga on 4/21/2018) -->
-    <color name="colorSettingsBackground">#010d4e</color>
+    <color name="colorSettingsBackground">#f5f5f5</color>
+
+    <color name="stickyNoteTextColor">#212121</color>
 
 </resources>
