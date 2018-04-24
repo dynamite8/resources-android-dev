@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiptopgoodstudio.androidresources.R;
 import com.tiptopgoodstudio.androidresources.ui.adapters.ResourceListAdapter;
@@ -207,12 +208,18 @@ public class ResourceListActivity extends AppCompatActivity
 
         Log.d(TAG, "In openWebPage()");
 
-        Uri webpage = Uri.parse(url);
+        try {
 
-        Intent webpageIntent = new Intent(Intent.ACTION_VIEW, webpage);
+            Uri webpage = Uri.parse(url);
 
-        if (webpageIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(webpageIntent);
+            Intent webpageIntent = new Intent(Intent.ACTION_VIEW, webpage);
+
+            if (webpageIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(webpageIntent);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Some error occured. Could not open the resource!", Toast.LENGTH_LONG).show();
         }
     }
 }
