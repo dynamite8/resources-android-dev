@@ -55,7 +55,7 @@ public class LaunchActivity extends AppCompatActivity {
     private void checkConnectivityAndLoadResources() {
         isOnline = isOnline();
 
-        if(isOnline == true) {
+        if(isOnline) {
             try {
                 //TODO - Create a method in ViewModel to access the Repository if this is not recommended
                 // First load data from Firebase into local DB if required
@@ -72,7 +72,8 @@ public class LaunchActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        mLoadingMessage.setText(getString(R.string.loading_error_message));
+                        mProgressBar.setVisibility(View.INVISIBLE);
                     }
                 });
 
@@ -106,9 +107,9 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     public boolean isOnline() {
-        ConnectivityManager connMgr = (ConnectivityManager)
+        ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return (networkInfo != null && networkInfo.isConnected());
     }
 }
