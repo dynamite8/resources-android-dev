@@ -14,7 +14,9 @@
 
         <activity
             android:name=".ui.LaunchActivity"
-            android:theme = "@style/AppTheme.NoActionBar">
+            android:theme = "@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"
+            android:noHistory="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
