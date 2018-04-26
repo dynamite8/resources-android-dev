@@ -28,8 +28,8 @@
 You'll need to rebase before working or creating a PR.
 
 1. Checkout the master branch `git checkout master`
-2. Grab the updated changes from repository `git fetch`
-3. `git pull --rebase origin master`
+2. Grab the updated changes from repository `git fetch upstream`
+3. Merge in updated latest changes to local master branch `git merge upstream/master`, changes should be fast-forwarded
 4. Checkout your working branch `git checkout <branch name>`
 5. Pull in changes from master to your branch `git rebase master`
 6. Upload your changes to the repo `git push -f`
