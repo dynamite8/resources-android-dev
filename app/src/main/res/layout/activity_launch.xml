@@ -9,24 +9,33 @@
   before calling MainActivity
  -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/list_background_color">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/loading_background">
 
-    <TextView
-        android:id="@+id/tv_loading"
-        style="@style/TextAppearance.AppCompat.Display1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding"
-        android:layout_gravity="center"
-        android:text="@string/loading_message" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@mipmap/ic_launcher_foreground" />
 
     <ProgressBar
         android:id="@+id/pb_loading_indicator"
-        android:layout_width="@dimen/progress_bar_size"
-        android:layout_height="@dimen/progress_bar_size"
-        android:layout_gravity="center" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/progress_bar_height"
+        android:layout_margin="16dp"
+        android:max="100"
+        android:progress="5"
+        style="@style/ProgressBar.Horizontal" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_loading"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding"
+        android:text="@string/loading_message" />
+
+</LinearLayout>

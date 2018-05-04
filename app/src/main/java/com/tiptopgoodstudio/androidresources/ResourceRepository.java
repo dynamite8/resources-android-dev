@@ -169,54 +169,33 @@ public class ResourceRepository {
     }
 
     /**
-     * This method loads the data from Firebase into the local SQLite Database
+     * This method returns the connection to Firebase
      *
-     * Added by Divya on 4/20/2018
+     * Updated by Divya on 4/29/2018
      *
      */
-    public DatabaseReference loadDataFromFirebase() {
+    public DatabaseReference connectToFirebase() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mResourcesDatabaseReference = mFirebaseDatabase.getReference().child("resources");
-        mResourcesEventListener = new ChildEventListener() {
-
-            // method is called when first load and also on new resources being added
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                // get the value at point in time to our matching entity
-                // data is deserialized into Resource class
-                Resource resource = dataSnapshot.getValue(Resource.class);
-
-                // Create a new Topic object and insert it into the Topic table
-                // When a topic that already exists is inserted again, it is ignored
-                Topic topic = new Topic(resource.getResourceTopic());
-                insertSingleTopic(topic);
-
-                //Insert it into the Resource table
-                insertSingleResource(resource);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mResourcesDatabaseReference.addChildEventListener(mResourcesEventListener);
         return mResourcesDatabaseReference;
     }
 
+    /**
+     * This method adds the Firebase data into the Local SQLite Database
+     *
+     * Added by Divya on 4/29/2018
+     */
+    public void addToLocalDatabase(DataSnapshot dataSnapshot) {
+        // get the value at point in time to our matching entity
+        // data is deserialized into Resource class
+        Resource resource = dataSnapshot.getValue(Resource.class);
+
+        // Create a new Topic object and insert it into the Topic table
+        // When a topic that already exists is inserted again, it is ignored
+        Topic topic = new Topic(resource.getResourceTopic());
+        insertSingleTopic(topic);
+
+        //Insert it into the Resource table
+        insertSingleResource(resource);
+    }
 }
