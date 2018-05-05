@@ -28,7 +28,7 @@
         android:layout_margin="16dp"
         android:max="100"
         android:progress="5"
-        style="@style/ProgressBar.Horizontal" />
+        style="@android:style/Widget.ProgressBar.Horizontal" />
 
     <TextView
         android:id="@+id/tv_loading"
