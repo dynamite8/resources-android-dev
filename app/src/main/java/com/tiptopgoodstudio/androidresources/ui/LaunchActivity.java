@@ -94,21 +94,8 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
-    /*
-    * Added on 04/23/2018 by Olga Agafonova
-    * The user may have (re)connected to Wifi/Mobile while the app was paused:
-    * therefore, we need to check for connectivity again
-    * */
-    @Override
-    public void onResume(){
-       super.onResume();
-
-       checkConnectivityAndLoadResources();
-    }
-
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 }
