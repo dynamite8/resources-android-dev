@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.tiptopgoodstudio.androidresources.R;
 import com.tiptopgoodstudio.androidresources.ResourceRepository;
+import com.tiptopgoodstudio.androidresources.Utilities;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -30,6 +31,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * MainActivity. We want to make sure that there is data in the local DB before
  * MainActivity can display the topics
  *
+ * Moved the isOnline() method to a Utilities class by Divya on 5/9/2018
+ *
  */
 
 public class LaunchActivity extends AppCompatActivity {
@@ -39,7 +42,6 @@ public class LaunchActivity extends AppCompatActivity {
 
     private TextView mLoadingMessage;
     private ProgressBar mProgressBar;
-    boolean isOnline = false;
 
     private final int TOTAL_RESOURCES = 205;
     private final AtomicInteger count = new AtomicInteger();
@@ -59,9 +61,7 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     private void checkConnectivityAndLoadResources() {
-        isOnline = isOnline();
-
-        if(isOnline) {
+        if(Utilities.isOnline(this)) {
             try {
                 // First load data from Firebase into local DB if required
                 ResourceRepository resourceRepository = new ResourceRepository(getApplication());
@@ -138,13 +138,7 @@ public class LaunchActivity extends AppCompatActivity {
 
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
-    }
-
-    public boolean isOnline() {
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return (networkInfo != null && networkInfo.isConnected());
     }
 }
