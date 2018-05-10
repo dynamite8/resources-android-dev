@@ -11,9 +11,7 @@
 <resources>
 
     <!-- Dimensions used throughout the app -->
-
-    <!-- Dimensions used in Launch Activity -->
-    <dimen name="progress_bar_height">15dp</dimen>
+    <dimen name="progress_bar_size">42dp</dimen>
 
     <!-- Strings used in MainActivity (Added by Olga on 3/20/2018) -->
     <dimen name="padding">16dp</dimen>
@@ -30,7 +28,6 @@
     <dimen name="resource_icon_margin_right">20dp</dimen>
 
     <!-- Dimensions used in resources_list.xml -->
-    <dimen name="progress_bar_size">42dp</dimen>
 
     <dimen name="contributor_height">32dp</dimen>
     <dimen name="contributor_list_height">200dp</dimen>

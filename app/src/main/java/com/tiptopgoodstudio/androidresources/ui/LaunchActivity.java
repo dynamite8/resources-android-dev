@@ -43,9 +43,6 @@ public class LaunchActivity extends AppCompatActivity {
     private TextView mLoadingMessage;
     private ProgressBar mProgressBar;
 
-    private final int TOTAL_RESOURCES = 205;
-    private final AtomicInteger count = new AtomicInteger();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,39 +60,12 @@ public class LaunchActivity extends AppCompatActivity {
     private void checkConnectivityAndLoadResources() {
         if(Utilities.isOnline(this)) {
             try {
+
+                mProgressBar.setVisibility(View.VISIBLE);
+
                 // First load data from Firebase into local DB if required
                 ResourceRepository resourceRepository = new ResourceRepository(getApplication());
                 DatabaseReference dbReference = resourceRepository.connectToFirebase();
-
-                dbReference.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        resourceRepository.addToLocalDatabase(dataSnapshot);
-                        int newCount = count.incrementAndGet();
-                        int progress = (100 * newCount)/TOTAL_RESOURCES;
-                        mProgressBar.setProgress(progress);
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
 
                 dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
