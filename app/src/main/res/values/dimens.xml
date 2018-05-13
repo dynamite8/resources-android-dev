@@ -19,6 +19,9 @@
     <dimen name="stickyNoteWidth">300dp</dimen>
     <dimen name="stickyNoteHeight">300dp</dimen>
 
+    <dimen name="stickyTextWidth">140dp</dimen>
+    <dimen name="stickyTextHeight">140dp</dimen>
+
     <dimen name="stickyMargin">16dp</dimen>
 
     <!-- Dimensions used in resource_item.xml -->

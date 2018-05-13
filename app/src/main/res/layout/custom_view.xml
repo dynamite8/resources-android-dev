@@ -34,10 +34,11 @@
 
             <TextView
                 android:id="@+id/stickyNoteText"
-                android:layout_height="@dimen/stickyNoteHeight"
-                android:layout_width="@dimen/stickyNoteWidth"
+                android:layout_height="@dimen/stickyTextHeight"
+                android:layout_width="@dimen/stickyTextWidth"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/stickyMargin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/stickyNoteTextColor"/>
 
