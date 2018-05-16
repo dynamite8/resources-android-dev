@@ -21,7 +21,6 @@ public interface TopicDao {
 
     /**
      * insert single Topic object into topic_table
-     *
      * @param topic
      */
     @Insert(onConflict = IGNORE)
@@ -29,7 +28,6 @@ public interface TopicDao {
 
     /**
      * insert multiple Topic objects into topic_table
-     *
      * @param topics
      */
     @Insert(onConflict = IGNORE)
@@ -37,7 +35,6 @@ public interface TopicDao {
 
     /**
      * query db for all topic records from topic_table
-     *
      * @return List<Topic> of all topics in db
      */
     @Query("SELECT * FROM topic_table ORDER BY topicName ASC")
@@ -51,7 +48,6 @@ public interface TopicDao {
 
     /**
      * delete single topic
-     *
      * @param topic
      */
     @Delete

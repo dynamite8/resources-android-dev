@@ -14,10 +14,6 @@ import com.tiptopgoodstudio.androidresources.db.entity.Topic;
 
 import java.util.List;
 
-/*
-* Added on 4/20/2018 by Olga Agafonova
-* Displays the custom StickyNoteView in a recycler view
-* */
 public class SitckyNoteAdapter extends RecyclerView.Adapter<SitckyNoteAdapter.SitckyNoteAdapterViewHolder> {
 
     private List<Topic> mTopicData;
@@ -53,7 +49,6 @@ public class SitckyNoteAdapter extends RecyclerView.Adapter<SitckyNoteAdapter.Si
         holder.mStickyIcon.setImageResource(stickyImage);
         holder.mStickyIcon.setContentDescription(topicName);
 
-
     }
 
     @Override
@@ -80,7 +75,6 @@ public class SitckyNoteAdapter extends RecyclerView.Adapter<SitckyNoteAdapter.Si
             super(itemView);
             mTopicDescription = (TextView) itemView.findViewById(R.id.stickyNoteText);
             mStickyIcon = (ImageView) itemView.findViewById(R.id.stickyNote);
-            //itemView.setOnClickListener(this);
             mStickyIcon.setOnClickListener(this);
         }
 

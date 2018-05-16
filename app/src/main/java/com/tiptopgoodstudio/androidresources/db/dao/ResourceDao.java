@@ -1,10 +1,5 @@
 package com.tiptopgoodstudio.androidresources.db.dao;
 
-/*
- * Dao (Data access object) is an interface that defines the database interactions
- * relating to the resource_table Room db table.
- **/
-
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Dao;
@@ -20,6 +15,10 @@ import java.util.List;
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
+/**
+ *  * Dao (Data access object) is an interface that defines the database interactions
+ * relating to the resource_table Room db table.
+ */
 @Dao
 public interface ResourceDao {
 
@@ -53,8 +52,7 @@ public interface ResourceDao {
     List<Resource> getTopicResourcesList(String topic);
 
     /**
-     * query resource_table for all resource record which matches resourceId
-     *
+     * query resource_table for all resource record which matches resourceId*
      * @param id
      * @return Resource
      */
@@ -62,8 +60,7 @@ public interface ResourceDao {
     Resource getResourceById(int id);
 
     /**
-     * query resource_table for resource record which matches resourceId
-     *
+     * query resource_table for resource record which matches resourceId*
      * @param id
      * @return String resource format to which the resource refers
      */
@@ -72,7 +69,6 @@ public interface ResourceDao {
 
     /**
      * replace existing resource record in resource_table with new data
-     *
      * @param resource
      */
     @Update(onConflict = REPLACE)
@@ -86,7 +82,6 @@ public interface ResourceDao {
 
     /**
      * delete single resource
-     *
      * @param resource
      */
     @Delete

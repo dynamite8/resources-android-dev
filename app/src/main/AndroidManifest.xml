@@ -15,37 +15,27 @@
 
         <activity
             android:name=".ui.LaunchActivity"
-            android:theme = "@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
-            android:noHistory="true">
-
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-          
         </activity>
-        
-        <activity android:name=".ui.MainActivity"
-                    android:theme = "@style/NoActionBar"/>
-        
-        <activity 
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/NoActionBar" />
+
+        <activity
             android:name=".ui.ResourceListActivity"
             android:parentActivityName=".ui.MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
         </activity>
-          
-        <activity android:name=".ui.SettingsActivity"
+
+        <activity
+            android:name=".ui.SettingsActivity"
             android:parentActivityName=".ui.MainActivity">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
         </activity>
 
     </application>

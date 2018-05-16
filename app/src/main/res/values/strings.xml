@@ -42,5 +42,7 @@
         Somayah Alharbi \n
         Blithe Brandon \n
     </string>
+    <string name="string_no_network_connection">No network connection!</string>
+    <string name="string_an_error_occurred">An error occured. Could not open the resource!</string>
 
 </resources>

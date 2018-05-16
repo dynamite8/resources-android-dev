@@ -19,17 +19,6 @@ import com.tiptopgoodstudio.androidresources.R;
 import com.tiptopgoodstudio.androidresources.ui.adapters.SitckyNoteAdapter;
 import com.tiptopgoodstudio.androidresources.viewmodel.TopicViewModel;
 
-
-
-/*
-* Updated on 4/20/2018 by Olga Agafonova
-* Added a Grid Layout that displays a RecyclerView (which displays the sticky notes)
-*
-* Moved the firebase code from MainActivity to the Repository by Divya on 4/20/2018
-*
-* Added the code to load topics list from the ViewModel by Divya on 4/21/2018
-* */
-
 public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter.ResourceClickListener {
 
     private RecyclerView mRecyclerView;
@@ -136,36 +125,23 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
         mErrorMessage.setVisibility(View.VISIBLE);
     }
 
-
     /**
-     * This method will be called when the sticky note is clicked
-     * This method creates an Explicit Intent to ResourceListActivity
-     * and sends the topic as an Intent extra
-     *
+     * When topic listed in StickyNote RecyclerView is selected, ResourceListActivity is
+     * called - Activity displays list of selected topic resources
+     * @param data
      */
-
-    public void onStickyClicked(String topic){
-        Intent intent = new Intent(this, ResourceListActivity.class);
-
-        intent.putExtra(Intent.EXTRA_TEXT, topic);
-
-        startActivity(intent);
-
-    }
-
     @Override
     public void onTopicItemClick(String data) {
-
-        onStickyClicked(data);
-
+        Intent intent = new Intent(this, ResourceListActivity.class);
+        intent.putExtra(Intent.EXTRA_TEXT, data);
+        startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-
         inflater.inflate(R.menu.actionbar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -184,7 +160,5 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
 
         }
     }
-
-
 
 }
