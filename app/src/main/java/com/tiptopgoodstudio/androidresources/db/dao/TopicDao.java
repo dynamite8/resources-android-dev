@@ -1,5 +1,6 @@
 package com.tiptopgoodstudio.androidresources.db.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -38,7 +39,7 @@ public interface TopicDao {
      * @return List<Topic> of all topics in db
      */
     @Query("SELECT * FROM topic_table ORDER BY topicName ASC")
-    List<Topic> getAllTopicsList();
+    LiveData<List<Topic>> getAllTopicsList();
 
     /**
      * delete all records from db topic_table

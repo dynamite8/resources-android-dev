@@ -23,7 +23,7 @@
 
     <string name="error_message">Some error occured. Please try again!</string>
 
-    <!-- Strings used in activity_launch.xml (Added by Divya on 4/20/2018) -->
+    <!-- Strings used in splash_screen.xmlAdded by Divya on 4/20/2018) -->
 
     <string name="loading_message">Loading resources ...</string>
 

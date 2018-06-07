@@ -1,6 +1,7 @@
 package com.tiptopgoodstudio.androidresources;
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import com.google.firebase.database.ChildEventListener;
@@ -21,54 +22,69 @@ import java.util.List;
  * Added a method to insert a single topic in the topic_table
  * Added a method to insert a single resource in the resource_table
  * Moved the firebase code from MainActivity to the Repository
- *
  */
 
 public class ResourceRepository {
+
+    private static ResourceRepository INSTANCE = null;
+    private static final String DATABASE_REFERENCE_NAME = "resources";
 
     private ResourceDao mResourceDao;
     private TopicDao mTopicDao;
 
     // Firebase references
     private FirebaseDatabase mFirebaseDatabase;
-    private DatabaseReference mResourcesDatabaseReference;
+    private DatabaseReference mResourcesFirebaseReference;
     private ChildEventListener mResourcesEventListener;
 
+    private LiveData<List<Resource>> mAllResourcesList;
+    private LiveData<List<Topic>> mTopicList;
+
     /**
-     *
      * @param application
      */
-    public ResourceRepository(Application application) {
-
-        // Get a handle to the local SQLite Database
+    private ResourceRepository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         mResourceDao = db.resourceDao();
         mTopicDao = db.topicDao();
+        mResourcesFirebaseReference= connectToFirebase();
+        mAllResourcesList = mResourceDao.getAllResourcesList();
+        mTopicList = mTopicDao.getAllTopicsList();
+    }
+
+    public static ResourceRepository getRepository(Application application) {
+        if (INSTANCE == null) {
+            INSTANCE = new ResourceRepository(application);
+        }
+        return INSTANCE;
     }
 
     /**
      * method returns all topic records in Room db topic_table
+     *
      * @return List<Topic>
      */
-    public List<Topic> getTopicsList() {
-        return mTopicDao.getAllTopicsList();
+    public LiveData<List<Topic>> getTopicsList() {
+        return mTopicList;
     }
 
     /**
      * method returns all resource records in Room db resource_table
+     *
      * @return List<Resource>
      */
-    public List<Resource> getAllResourcesList() {
-        return mResourceDao.getAllResourcesList();
+    public LiveData<List<Resource>> getAllResourcesList() {
+        return mAllResourcesList;
     }
 
     /**
      * method returns all resource records which match topic parameter from
      * Room db resource_table \
+     *
      * @param topic
      * @return List<Resource>
      */
-    public List<Resource> getTopicResourcesList(String topic) {
+    public LiveData<List<Resource>> getTopicResourcesList(String topic) {
         return mResourceDao.getTopicResourcesList(topic);
     }
 
@@ -110,9 +126,7 @@ public class ResourceRepository {
      * Method to insert a single resource object into Room db resource_table
      * Calls InsertSingleResourceAsyncTask so as to perform work off main thread
      *
-     * @param resource
-     *
-     * Added by Divya on 4/20/2018
+     * @param resource Added by Divya on 4/20/2018
      */
     public void insertSingleResource(Resource resource) {
         new InsertSingleResourceAsyncTask(mResourceDao).execute(resource);
@@ -120,7 +134,7 @@ public class ResourceRepository {
 
     /**
      * Inner AsyncTask subclass to insert a single Resource object into Room db resource_table
-     *
+     * <p>
      * Added by Divya on 4/20/2018
      */
     private static class InsertSingleResourceAsyncTask extends AsyncTask<Resource, Void, Void> {
@@ -141,17 +155,15 @@ public class ResourceRepository {
      * Method to insert a single Topic object into Room db topic_table
      * Calls InsertSingleTopicAsyncTask so as to perform work off main thread
      *
-     * @param topic
-     *
-     * Added by Divya on 4/20/2018
+     * @param topic Added by Divya on 4/20/2018
      */
-    public void insertSingleTopic(Topic topic) {
+    private void insertSingleTopic(Topic topic) {
         new InsertSingleTopicAsyncTask(mTopicDao).execute(topic);
     }
 
     /**
      * Inner AsyncTask subclass to insert a single Topic object into Room db topic_table
-     *
+     * <p>
      * Added by Divya on 4/20/2018
      */
     private static class InsertSingleTopicAsyncTask extends AsyncTask<Topic, Void, Void> {
@@ -169,16 +181,15 @@ public class ResourceRepository {
     }
 
     /**
-     * This method returns the connection to Firebase
+     * make connection to firebase db and return reference to target db
      *
-     * Updated by Divya on 4/29/2018
-     *
+     * @return DatabaseReference
      */
     public DatabaseReference connectToFirebase() {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mResourcesDatabaseReference = mFirebaseDatabase.getReference().child("resources");
+        mResourcesFirebaseReference = mFirebaseDatabase.getReference().child(DATABASE_REFERENCE_NAME);
 
-        mResourcesDatabaseReference.addChildEventListener(new ChildEventListener() {
+        mResourcesFirebaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 addToLocalDatabase(dataSnapshot);
@@ -205,12 +216,12 @@ public class ResourceRepository {
             }
         });
 
-        return mResourcesDatabaseReference;
+        return mResourcesFirebaseReference;
     }
 
     /**
      * This method adds the Firebase data into the Local SQLite Database
-     *
+     * <p>
      * Added by Divya on 4/29/2018
      */
     public void addToLocalDatabase(DataSnapshot dataSnapshot) {

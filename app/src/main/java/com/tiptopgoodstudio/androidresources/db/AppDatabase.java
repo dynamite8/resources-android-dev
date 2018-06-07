@@ -19,6 +19,11 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ResourceDao resourceDao();
     public abstract TopicDao topicDao();
 
+    /**
+     * db is a singleton; method returns existing instantiation if exists; instantiates if not
+     * @param context - receives application context
+     * @return AppDatabase
+     */
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {

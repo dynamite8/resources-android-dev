@@ -2,9 +2,8 @@ package com.tiptopgoodstudio.androidresources.ui;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,122 +11,75 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiptopgoodstudio.androidresources.R;
-import com.tiptopgoodstudio.androidresources.ui.adapters.SitckyNoteAdapter;
+import com.tiptopgoodstudio.androidresources.Utilities;
+import com.tiptopgoodstudio.androidresources.ui.adapters.StickyNoteAdapter;
 import com.tiptopgoodstudio.androidresources.viewmodel.TopicViewModel;
 
-public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter.ResourceClickListener {
+public class MainActivity extends AppCompatActivity implements StickyNoteAdapter.ResourceClickListener {
 
     private RecyclerView mRecyclerView;
-    private SitckyNoteAdapter mSitckyNoteAdapter;
-    private ProgressBar mLoadingIndicator;
-    private TextView mErrorMessage;
+    private StickyNoteAdapter mStickyNoteAdapter;
+    private View mSplashScreen;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.action_toolbar_main);
-        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorMenuItem));
-        setSupportActionBar(toolbar);
+        initializeUiViews();
+        setupActivityAppBar();
+        setupRecyclerView();
+        setupActivityAsDataObserver();
+    }
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_stickynotes);
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-        mErrorMessage = (TextView) findViewById(R.id.main_error_message_display);
+    private void initializeUiViews() {
+        mToolbar = findViewById(R.id.action_toolbar_main);
+        mRecyclerView = findViewById(R.id.rv_stickynotes);
+        mSplashScreen = findViewById(R.id.splash_screen);
+    }
 
+    private void setupRecyclerView() {
         GridLayoutManager layoutManager = new GridLayoutManager(MainActivity.this, 2, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
+        mStickyNoteAdapter = new StickyNoteAdapter(this);
+        mRecyclerView.setAdapter(mStickyNoteAdapter);
+    }
 
-        mSitckyNoteAdapter = new SitckyNoteAdapter(this);
-        mRecyclerView.setAdapter(mSitckyNoteAdapter);
-
-        // Load the topics list from the ViewModel
-        loadDataFromViewModel();
+    private void setupActivityAppBar() {
+        mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.colorMenuItem));
+        setSupportActionBar(mToolbar);
     }
 
     /**
      * This method retrieves data from the ViewModel
-     *
-     * Added by Divya on 4/21/2018
      */
-    private void loadDataFromViewModel(){
+    private void setupActivityAsDataObserver() {
 
-        try {
+        TopicViewModel mTopicViewModel = ViewModelProviders.of(this).get(TopicViewModel.class);
 
-            showProgress();
-
-            TopicViewModel model = ViewModelProviders.of(this).get(TopicViewModel.class);
-
-            model.getTopicsList().observe(this, topicList -> {
-                //Update UI
-                mSitckyNoteAdapter.setTopicData(topicList);
+        mTopicViewModel.getTopicsList().observe(this, topicList -> {
+            //Update UI
+            mStickyNoteAdapter.setTopicData(topicList);
+            if (mStickyNoteAdapter.getItemCount() == 0) {
+                showSplashScreen();
+                if (!Utilities.isOnline(this)) {
+                    Toast.makeText(this, "There is no network connection!", Toast.LENGTH_SHORT).show();
+                }
+            } else {
                 showTopicsView();
-            });
-
-        } catch(Exception e) {
-            e.printStackTrace();
-            showErrorMessage();
-        } finally {
-            mLoadingIndicator.setVisibility(View.INVISIBLE);
-        }
-
-    }
-
-    /**
-     * This method will show the progress
-     *
-     * Added by Divya on 4/21/2018
-     */
-    private void showProgress() {
-
-        // First, make the error textview is gone
-        mErrorMessage.setVisibility(View.GONE);
-
-        // Then, make sure the recycler view list is gone
-        mRecyclerView.setVisibility(View.GONE);
-
-        //Now show the progress bar
-        mLoadingIndicator.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * This method will make the resource list visible and
-     * hide the error message.
-     *
-     * Added by Divya on 4/21/2018
-     */
-    private void showTopicsView() {
-
-         // First, make the error invisible
-        mErrorMessage.setVisibility(View.INVISIBLE);
-
-        // Then, make sure the recycler view list visible
-        mRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * This method will make the error message visible and hide the topic sticky notes
-     *
-     * Added by Divya on 4/21/2018.
-     */
-    private void showErrorMessage() {
-
-        // First, hide the currently visible data
-        mRecyclerView.setVisibility(View.GONE);
-
-        // Then, show the error
-        mErrorMessage.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     /**
      * When topic listed in StickyNote RecyclerView is selected, ResourceListActivity is
-     * called - Activity displays list of selected topic resources
+     * called - ResourceListActivity displays list of selected topic resources
+     *
      * @param data
      */
     @Override
@@ -159,6 +111,17 @@ public class MainActivity extends AppCompatActivity implements SitckyNoteAdapter
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    //display views helper methods
+    private void showTopicsView() {
+        mSplashScreen.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void showSplashScreen() {
+        mRecyclerView.setVisibility(View.GONE);
+        mSplashScreen.setVisibility(View.VISIBLE);
     }
 
 }

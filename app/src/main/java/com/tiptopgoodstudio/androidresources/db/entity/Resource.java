@@ -28,6 +28,7 @@ public class Resource {
 
     }
 
+    @Ignore
     public Resource(String resourceTopic, String resourceDescription, String resourceUrl, String resourceFormat) {
         this.resourceTopic = resourceTopic;
         this.resourceDescription = resourceDescription;

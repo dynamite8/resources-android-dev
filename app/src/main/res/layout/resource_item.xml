@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-  Created by Divya on 3/3/2018.
-  For GrowWithGoogleChallengeScholarship Women In Technology Learning Project
-  Android Dev Resources
-
-  This page is the layout for an item. A list of such items is displayed as a recycler view in
-  resources_list.xml
-
-  Added the resource URL hidden TextView (by Divya on 3/24/2018)
- -->
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -33,7 +22,7 @@
         android:layout_toRightOf="@id/resource_icon"
         android:layout_centerVertical="true"
         android:text="@string/resource_item_description"
-        style="@style/TextAppearance.AppCompat.Title" />
+        style="@style/TextAppearance.AppCompat.Subhead" />
 
     <TextView
         android:id="@+id/tv_resource_url"

@@ -41,7 +41,7 @@ public interface ResourceDao {
      * @return List<Resource> list of all resources in db
      */
     @Query("SELECT * FROM resource_table")
-    List<Resource> getAllResourcesList();
+    LiveData<List<Resource>> getAllResourcesList();
 
     /**
      * query db for all resource records which match topic parameter from resource_table
@@ -49,7 +49,7 @@ public interface ResourceDao {
      * @return List<Resource> list of all resources matching topic
      */
     @Query("SELECT * FROM resource_table WHERE resourceTopic LIKE :topic")
-    List<Resource> getTopicResourcesList(String topic);
+    LiveData<List<Resource>> getTopicResourcesList(String topic);
 
     /**
      * query resource_table for all resource record which matches resourceId*
